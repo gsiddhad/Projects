@@ -4,7 +4,8 @@
 
 void _entry_pass();
 
-int main() {
+int main()
+{
 	installuserdriver("SVGA256", &DetectSvga);
 	int gd = DETECT, gm = 0;
 	initgraph(&gd, &gm, "c:\\software\\tc\\bgi");
@@ -14,13 +15,14 @@ int main() {
 
 	loadbitmap(0, 0, "world_1.bmp");
 
-//	_entry_pass();
+	//	_entry_pass();
 	getch();
 
 	return 0;
 }
 
-void _entry_pass() {
+void _entry_pass()
+{
 	setfillstyle(SOLID_FILL, BLUE);
 	bar(0, 0, getmaxx(), getmaxy());
 
@@ -60,11 +62,13 @@ void _entry_pass() {
 
 	loadbitmap(5, 5, "world.bmp");
 
-	do {
+	do
+	{
 		ch = getch();
 
 		setcolor(0);
-		if (ch != 27 && ch != 13) {
+		if (ch != 27 && ch != 13)
+		{
 			if (ch == 72 || ch == 80)
 				line(minx, y, maxx, y);
 			if (ch == 75 || ch == 77)
@@ -79,7 +83,8 @@ void _entry_pass() {
 
 		setcolor(scolor);
 
-		switch (ch) {
+		switch (ch)
+		{
 		case 72:
 			if (y == miny)
 				y = maxy;
@@ -129,12 +134,12 @@ void _entry_pass() {
 
 	} while (ch != 13);
 
-//grid changes
+	//grid changes
 
 	setcolor(0);
 	line(0, maxy + 5, getmaxx(), maxy + 5);
 
-//	minx=maxx;
+	//	minx=maxx;
 	miny = maxy + 10;
 
 	d = 20;
@@ -161,11 +166,13 @@ void _entry_pass() {
 	line(x, miny, x, maxy);
 	line(minx, y, maxx, y);
 
-	do {
+	do
+	{
 		ch = getch();
 
 		setcolor(0);
-		if (ch != 27 && ch != 13) {
+		if (ch != 27 && ch != 13)
+		{
 			if (ch == 72 || ch == 80)
 				line(minx, y, maxx, y);
 			if (ch == 75 || ch == 77)
@@ -179,7 +186,8 @@ void _entry_pass() {
 
 		setcolor(scolor);
 
-		switch (ch) {
+		switch (ch)
+		{
 		case 72:
 			if (y == miny)
 				y = maxy;

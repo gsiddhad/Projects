@@ -3,12 +3,13 @@
 
 void _minion_draw(int, int, float);
 
-void _minion_draw(int x, int y, float size) {
+void _minion_draw(int x, int y, float size)
+{
 	y += size / 200;
 	int col = getcolor();
 
 	//head
-	setcolor (YELLOW);
+	setcolor(YELLOW);
 	circle(x, y - size / 4, size / 10);
 	setfillstyle(SOLID_FILL, YELLOW);
 	floodfill(x, y - size / 4, YELLOW);
@@ -25,7 +26,7 @@ void _minion_draw(int x, int y, float size) {
 	setfillstyle(SOLID_FILL, 0);
 	floodfill(x, y - size / 5, 0);
 
-	setcolor (LIGHTBLUE);
+	setcolor(LIGHTBLUE);
 	circle(x, y - size / 5, size / 40);
 	circle(x, y - size / 5, 3 * size / 80);
 	setfillstyle(SOLID_FILL, LIGHTBLUE);
@@ -50,7 +51,7 @@ void _minion_draw(int x, int y, float size) {
 	ellipse(x, y + size / 16, 0, 360, 47 * size / 400, 21 * size / 200);
 
 	//clothes
-	setcolor (BLUE);
+	setcolor(BLUE);
 	ellipse(x, y - size / 20, 225, 315, 3 * size / 20, 3 * size / 80);
 	ellipse(x, y - 3 * size / 80, 225, 315, 3 * size / 20, 3 * size / 80);
 	line(x - size / 10, y - size / 40, x - size / 10, y);
@@ -63,7 +64,7 @@ void _minion_draw(int x, int y, float size) {
 	ellipse(x, y - size / 80, 235, 305, 7 * size / 40, size / 4);
 	floodfill(x, y + size / 8, BLUE);
 	rectangle(x - 3 * size / 40, y - size / 80, x + 3 * size / 40,
-			y + size / 10); // design here
+			  y + size / 10); // design here
 	setcolor(BLUE);
 	circle(x, y + size / 20, 3 * size / 80); //design
 	floodfill(x - size / 20, y + size / 40, BLUE);

@@ -8,7 +8,8 @@
 #include "ss.h"
 using namespace std;
 
-int main() {
+int main()
+{
 	sudoku ori;
 	ori.print();
 	return 0;

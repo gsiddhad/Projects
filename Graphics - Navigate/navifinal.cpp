@@ -12,7 +12,8 @@ void usemap();
 void menu();
 void performmap(char[]);
 
-void performmap(char str[]) {
+void performmap(char str[])
+{
 	initgraphic();
 
 	ifstream f1, f2;
@@ -28,7 +29,8 @@ void performmap(char str[]) {
 	strcat(dir2, "\\GRAPH.TXT");
 
 	f1.open(dir2);
-	while (!f1.eof()) {
+	while (!f1.eof())
+	{
 		f1 >> strn >> x >> y;
 		circle(x, y, 10);
 	}
@@ -39,10 +41,12 @@ void performmap(char str[]) {
 	char str2[20];
 
 	f1.open(dir1);
-	while (!f1.eof()) {
+	while (!f1.eof())
+	{
 		f1 >> str11 >> str12 >> strn;
 		f2.open(dir2);
-		while (!f2.eof()) {
+		while (!f2.eof())
+		{
 			f2 >> str2 >> x >> y;
 			if (strcmp(str11, str2) == 0)
 				x1 = x, y1 = y;
@@ -58,44 +62,54 @@ void performmap(char str[]) {
 	closegraph();
 }
 
-void usemap() {
+void usemap()
+{
 	clrscr();
 	int flag = 0;
 	char str1[20], str2[20], str3[20];
 	ifstream fi;
 	fi.open("d:\\NAVIGATE\\MAPS.DAT");
-	while (!fi.eof()) {
+	while (!fi.eof())
+	{
 		fi >> str1;
 		fi >> str2;
-		cout << endl << str1;
+		cout << endl
+			 << str1;
 	}
 	fi.close();
 	cout << "\n\nEnter Map\t\t";
 	cin >> str1;
 	strupr(str1);
 	fi.open("d:\\NAVIGATE\\MAPS.DAT");
-	while (!fi.eof()) {
+	while (!fi.eof())
+	{
 		fi >> str2;
-		if (strcmp(str2, str1) == 0) {
+		if (strcmp(str2, str1) == 0)
+		{
 			flag = 1;
 			break;
-		} else
+		}
+		else
 			flag = 0;
 	}
 	fi.close();
-	if (flag == 1) {
+	if (flag == 1)
+	{
 		cout << "\nMap found\n";
 		delay(1500);
 		performmap(str1);
 		menu();
-	} else {
+	}
+	else
+	{
 		cout << "\nMap Not Found...\n";
 		delay(1500);
 		menu();
 	}
 }
 
-void menu() {
+void menu()
+{
 	clrscr();
 
 	cout << "\n\t\t\t\tMap Menu";
@@ -106,7 +120,8 @@ void menu() {
 	cout << "\n00. Exit";
 	cout << "\nEnter Choice\t\t";
 
-	switch (getch()) {
+	switch (getch())
+	{
 	case '1':
 		init();
 		break;
@@ -127,7 +142,8 @@ void menu() {
 	menu();
 }
 
-void insmap() {
+void insmap()
+{
 	clrscr();
 	int ch = 1;
 	char str[20], mapname[20];
@@ -151,9 +167,11 @@ void insmap() {
 	ofstream fo;
 	fo.open(dir1);
 	cout << "\nEnter Nodes :\tEnter 0 to terminate:\n";
-	while (strcmp(str, "0") != 0) {
+	while (strcmp(str, "0") != 0)
+	{
 		cin >> str;
-		if (strcmp(str, "0") != 0) {
+		if (strcmp(str, "0") != 0)
+		{
 			ch++;
 			fo << str << "\t";
 		}
@@ -170,18 +188,20 @@ void insmap() {
 	ifstream fi;
 	int x = 0, y = 0;
 
-	if (c == 'y') {
+	if (c == 'y')
+	{
 		cout << "Enter X and Y cordinates of the nodes...\n";
 		fi.open(dir1);
 		fo.open(dir3);
-		while (!fi.eof()) {
+		while (!fi.eof())
+		{
 			fi >> str;
-			if (strcmp(str, "") != 0 || strcmp(str, "\t") == 0) {
+			if (strcmp(str, "") != 0 || strcmp(str, "\t") == 0)
+			{
 				cout << str << "\t";
 				cin >> x >> y;
 				fo << str << "\t" << x << "\t" << y << "\n";
 			}
-
 		}
 		fi.close();
 		fo.close();
@@ -190,7 +210,8 @@ void insmap() {
 	fstream f;
 
 	f.open("d:\\NAVIGATE\\MAPS.DAT", ios::app);
-	f << endl << mapname << "\t" << ch;
+	f << endl
+	  << mapname << "\t" << ch;
 	f.close();
 
 	char str1[20], str2[20];
@@ -198,7 +219,8 @@ void insmap() {
 	fo.open(dir2);
 	cout << "\nEnter Weights :\t node \" \" node \" \" weight\n";
 	cout << "Enter 0 0 0 to terminate\n";
-	while (strcmp(str1, "0") != 0) {
+	while (strcmp(str1, "0") != 0)
+	{
 		cin >> str1 >> str2 >> ch;
 		if (strcmp(str1, "0") != 0)
 			fo << str1 << "\t" << str2 << "\t" << ch << "\n";
@@ -206,7 +228,8 @@ void insmap() {
 	fo.close();
 }
 
-void delmap() {
+void delmap()
+{
 	clrscr();
 	char dir1[50], dir2[50];
 	char str[10], ch[50], str1[20], str2[20];
@@ -215,10 +238,12 @@ void delmap() {
 
 	ifstream fi;
 	fi.open("d:\\NAVIGATE\\MAPS.DAT");
-	while (!fi.eof()) {
+	while (!fi.eof())
+	{
 		fi >> str1;
 		fi >> str2;
-		cout << endl << str1;
+		cout << endl
+			 << str1;
 	}
 	fi.close();
 
@@ -234,12 +259,16 @@ void delmap() {
 
 	int flag = 0;
 
-	while (!f1.eof()) {
+	while (!f1.eof())
+	{
 		f1 >> ch;
-		if (strcmp(ch, str) == 0) {
+		if (strcmp(ch, str) == 0)
+		{
 			f1 >> ch;
 			flag = 1;
-		} else {
+		}
+		else
+		{
 			f2 << ch;
 			f1 >> ch;
 			f2 << "\t" << ch << endl;
@@ -259,7 +288,8 @@ void delmap() {
 	f1.open(dir2);
 	f2.open(dir1);
 
-	while (!f1.eof()) {
+	while (!f1.eof())
+	{
 		f1 >> ch;
 		f2 << ch << "\t";
 		f1 >> ch;
@@ -275,7 +305,8 @@ void delmap() {
 	remove(dir);
 }
 
-void main() {
+void main()
+{
 	clrscr();
 	menu();
 }

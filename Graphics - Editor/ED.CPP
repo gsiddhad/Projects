@@ -2,7 +2,8 @@
 
 void front();
 
-void front() {
+void front()
+{
 	/*	setcolor(4);
 	 rectangle(2,2,getmaxx()-2,getmaxy()-2);
 
@@ -19,18 +20,20 @@ void front() {
 char dir[50];
 int x = 4, y = 25;
 
-struct mline {
+struct mline
+{
 	char text[82];
 	int num;
 	int pos;
 };
 
-void writefile() {
+void writefile()
+{
 	char name[20];
-//	cout<<"Enter File Name\t";
-//	cin>>name;
-//	strcpy(dir,"c:\\");	strcat(dir,name);
-//	strcat(dir,".txt");
+	//	cout<<"Enter File Name\t";
+	//	cin>>name;
+	//	strcpy(dir,"c:\\");	strcat(dir,name);
+	//	strcat(dir,".txt");
 
 	ofstream ofile("c:\\abcd.txt");
 
@@ -39,9 +42,10 @@ void writefile() {
 	mline line;
 	line.pos = 0;
 
-	setcolor (RED);
+	setcolor(RED);
 
-	while (1) {
+	while (1)
+	{
 		ch = getch(); /*
 		 if(ch==8)
 		 {
@@ -55,18 +59,23 @@ void writefile() {
 		 outtextxy(x,y,line.text);
 		 }
 		 else */
-		if (ch == 27) {
+		if (ch == 27)
+		{
 			line.text[line.pos] = '\0';
 			ofile << line.text;
 			break;
-		} else if (ch == 13 || line.pos == 79) {
+		}
+		else if (ch == 13 || line.pos == 79)
+		{
 			line.text[line.pos] = ch;
 			line.text[++line.pos] = '\0';
 			line.pos = 0;
 			line.num++;
 			y += 10;
 			ofile << line.text << endl;
-		} else {
+		}
+		else
+		{
 			//	setcolor(WHITE);
 			//	outtextxy(x,y,line.text);
 
@@ -80,11 +89,13 @@ void writefile() {
 	ofile.close();
 }
 
-void readfile() {
+void readfile()
+{
 	ifstream ifile("c:\\abcd.txt");
 	char ch;
 
-	while (1) {
+	while (1)
+	{
 		ifile.get(ch);
 		if (ifile.eof())
 			break;
@@ -94,7 +105,8 @@ void readfile() {
 	ifile.close();
 }
 
-void main() {
+void main()
+{
 	clrscr();
 
 	_graphics_init();

@@ -1,15 +1,18 @@
 #ifndef INT2STR_H_
 #define INT2STR_H_
 
-void inttostr(int num, char str[]) {
+void inttostr(int num, char str[])
+{
 	char ch;
 	int i = 0;
 	int d = 0, rev = 0;
-	while (num > 0) {
+	while (num > 0)
+	{
 		d = num % 10;
 		rev = rev * 10 + d;
 		num /= 10;
-		switch (d) {
+		switch (d)
+		{
 		case 1:
 			ch = '1';
 			break;

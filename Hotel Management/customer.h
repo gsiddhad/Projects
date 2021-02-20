@@ -1,15 +1,16 @@
 #ifndef CUSTOMER_H_
 #define CUSTOMER_H_
 
-#include<fstream.h>
-#include<conio.h>
-#include<stdio.h>
-#include<string.h>
-#include<dos.h>
+#include <fstream.h>
+#include <conio.h>
+#include <stdio.h>
+#include <string.h>
+#include <dos.h>
 
 using namespace std;
 
-class CUSTOMER {
+class CUSTOMER
+{
 	int R_No;
 	char name[10];
 	char add[20];
@@ -17,6 +18,7 @@ class CUSTOMER {
 	int dd, mm, yy;
 	int daysStayed;
 	long amount;
+
 public:
 	void intro();
 	void inquiryRoomNo();
@@ -26,7 +28,8 @@ public:
 	void reports();
 };
 
-void CUSTOMER::intro() {
+void CUSTOMER::intro()
+{
 	clrscr();
 	box(8, 4, 72, 23, 0);
 	gotoxy(26, 2);
@@ -64,7 +67,8 @@ void CUSTOMER::intro() {
 	getch();
 }
 
-void CUSTOMER::inquiryRoomNo() {
+void CUSTOMER::inquiryRoomNo()
+{
 	clrscr();
 	int flag = 0;
 	char NAME[10];
@@ -77,8 +81,10 @@ void CUSTOMER::inquiryRoomNo() {
 
 	CUSTOMER c;
 	fstream fin("cust", ios::binary | ios::in);
-	while (fin.read((char*) &c, sizeof(c))) {
-		if (strcmpi(NAME, c.name) == 0) {
+	while (fin.read((char *)&c, sizeof(c)))
+	{
+		if (strcmpi(NAME, c.name) == 0)
+		{
 			flag = 1;
 			clrscr();
 			box(21, 3, 59, 19, 1);
@@ -98,7 +104,8 @@ void CUSTOMER::inquiryRoomNo() {
 		}
 	}
 	fin.close();
-	if (flag == 0) {
+	if (flag == 0)
+	{
 		clrscr();
 		box(25, 10, 65, 16, 0);
 		gotoxy(32, 13);
@@ -108,7 +115,8 @@ void CUSTOMER::inquiryRoomNo() {
 	getch();
 }
 
-void CUSTOMER::inquiryCust() {
+void CUSTOMER::inquiryCust()
+{
 	clrscr();
 	int RNO, flag = 0;
 	box(21, 10, 69, 16, 0);
@@ -120,8 +128,10 @@ void CUSTOMER::inquiryCust() {
 
 	CUSTOMER c;
 	fstream fin("cust", ios::binary | ios::in);
-	while (fin.read((char*) &c, sizeof(c))) {
-		if (RNO == c.R_No) {
+	while (fin.read((char *)&c, sizeof(c)))
+	{
+		if (RNO == c.R_No)
+		{
 			flag = 1;
 			clrscr();
 			box(21, 3, 59, 19, 1);
@@ -141,7 +151,8 @@ void CUSTOMER::inquiryCust() {
 		}
 	}
 	fin.close();
-	if (flag == 0) {
+	if (flag == 0)
+	{
 		clrscr();
 		box(25, 10, 65, 16, 0);
 		gotoxy(30, 13);
@@ -151,7 +162,8 @@ void CUSTOMER::inquiryCust() {
 	getch();
 }
 
-void CUSTOMER::check_in() {
+void CUSTOMER::check_in()
+{
 	clrscr();
 	int TYPE, RNO, flag;
 	ROOMS r;
@@ -164,8 +176,10 @@ void CUSTOMER::check_in() {
 	gotoxy(31, 14);
 	cout << "Enter Room Type : ";
 	cin >> TYPE;
-	if (TYPE != 0 && TYPE != 1) {
-		while (TYPE != 0 && TYPE != 1) {
+	if (TYPE != 0 && TYPE != 1)
+	{
+		while (TYPE != 0 && TYPE != 1)
+		{
 			gotoxy(20, 24);
 			clreol();
 			gotoxy(20, 24);
@@ -184,15 +198,20 @@ void CUSTOMER::check_in() {
 
 	gotoxy(20, 24);
 	clreol();
-	if (RNO == -1) {
+	if (RNO == -1)
+	{
 		cout << "   This Room Type is not available !!!";
 		getch();
 		return;
-	} else if (RNO == 0) {
+	}
+	else if (RNO == 0)
+	{
 		cout << "        Invalid room number !!!";
 		getch();
 		return;
-	} else {
+	}
+	else
+	{
 		CUSTOMER c;
 		char NAME[10], ADD[20], PHONE[10];
 		fstream fout("cust", ios::binary | ios::app);
@@ -215,13 +234,14 @@ void CUSTOMER::check_in() {
 		c.dd = DD;
 		c.mm = MM;
 		c.yy = YY;
-		fout.write((char*) &c, sizeof(c));
+		fout.write((char *)&c, sizeof(c));
 		fout.close();
 	}
 	r.bookRoom(RNO);
 }
 
-void CUSTOMER::check_out() {
+void CUSTOMER::check_out()
+{
 	clrscr();
 	int RNO, flag = 0, AMOUNT;
 	box(20, 9, 60, 20, 0);
@@ -234,21 +254,25 @@ void CUSTOMER::check_out() {
 
 	CUSTOMER c;
 	fstream fin("cust", ios::binary | ios::in);
-	while (fin.read((char*) &c, sizeof(c))) {
-		if (RNO == c.R_No) {
+	while (fin.read((char *)&c, sizeof(c)))
+	{
+		if (RNO == c.R_No)
+		{
 			flag = 1;
 			break;
 		}
 	}
 	fin.close();
-	if (flag == 0) {
+	if (flag == 0)
+	{
 		gotoxy(28, 17);
 		cout << "No such Room Number !!!";
 		getch();
 		return;
 	}
 
-	if (flag == 1) {
+	if (flag == 1)
+	{
 		ROOMS r;
 		r.releaseRoom(RNO);
 		AMOUNT = r.retRoomCharges(RNO);
@@ -256,8 +280,10 @@ void CUSTOMER::check_out() {
 
 	fstream fin1("cust", ios::binary | ios::in);
 	fstream fout1("temp", ios::binary | ios::out);
-	while (fin1.read((char*) &c, sizeof(c))) {
-		if (RNO == c.R_No && c.daysStayed == -1) {
+	while (fin1.read((char *)&c, sizeof(c)))
+	{
+		if (RNO == c.R_No && c.daysStayed == -1)
+		{
 			int D;
 			gotoxy(23, 16);
 			cout << "Enter No. of Days stayed : ";
@@ -266,9 +292,10 @@ void CUSTOMER::check_out() {
 			c.amount = D * AMOUNT;
 			gotoxy(23, 18);
 			cout << "Total Charges are Rupees : " << c.amount;
-			fout1.write((char*) &c, sizeof(c));
-		} else
-			fout1.write((char*) &c, sizeof(c));
+			fout1.write((char *)&c, sizeof(c));
+		}
+		else
+			fout1.write((char *)&c, sizeof(c));
 	}
 	fin1.close();
 	fout1.close();
@@ -277,7 +304,8 @@ void CUSTOMER::check_out() {
 	getch();
 }
 
-void CUSTOMER::reports() {
+void CUSTOMER::reports()
+{
 	clrscr();
 	CUSTOMER c;
 	box(5, 3, 76, 23, 1);
@@ -287,8 +315,9 @@ void CUSTOMER::reports() {
 	fstream fin("cust", ios::binary | ios::in);
 	gotoxy(7, 9);
 	cout
-			<< "R.No NAME       ADDRESS      AMOUNT    DT/OF CHECK-IN    DAYS STAYED";
-	while (fin.read((char*) &c, sizeof(c))) {
+		<< "R.No NAME       ADDRESS      AMOUNT    DT/OF CHECK-IN    DAYS STAYED";
+	while (fin.read((char *)&c, sizeof(c)))
+	{
 		gotoxy(7, i);
 		cout << c.R_No;
 		gotoxy(12, i);
@@ -298,7 +327,8 @@ void CUSTOMER::reports() {
 		gotoxy(37, i);
 		if (c.amount == -1)
 			cout << "N/A";
-		else {
+		else
+		{
 			cout << c.amount << "/=";
 			AMOUNT = AMOUNT + c.amount;
 		}
@@ -311,7 +341,8 @@ void CUSTOMER::reports() {
 			cout << c.daysStayed;
 
 		i++;
-		if (i == 22) {
+		if (i == 22)
+		{
 			i = 11;
 			clrscr();
 			box(5, 3, 76, 23, 1);

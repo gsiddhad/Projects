@@ -1,7 +1,8 @@
-#include"gourav.h"
-#include"password.h"
+#include "gourav.h"
+#include "password.h"
 
-int main() {
+int main()
+{
 	int gd = DETECT, gm = 0;
 	initgraph(&gd, &gm, "c:\\software\\tc\\bgi");
 	_latlon();
@@ -9,12 +10,15 @@ int main() {
 	return 0;
 }
 
-void _draw_grid(int x = 0, int y = 0, int ch = 0) {
+void _draw_grid(int x = 0, int y = 0, int ch = 0)
+{
 	int xx = x, yy = y;
 	int d = 10;
-	setcolor (GREEN);
-	for (int i = 0; i < 36; i++) {
-		for (int j = 0; j < 16; j++) {
+	setcolor(GREEN);
+	for (int i = 0; i < 36; i++)
+	{
+		for (int j = 0; j < 16; j++)
+		{
 			rectangle(x, y, x + d, y + d);
 			y += d;
 		}
@@ -29,9 +33,12 @@ void _draw_grid(int x = 0, int y = 0, int ch = 0) {
 	x = xx;
 	d = 20;
 
-	if (ch <= 2) {
-		for (i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
+	if (ch <= 2)
+	{
+		for (i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
 				rectangle(x, y, x + d, y + d);
 				y += d;
 			}
@@ -43,9 +50,12 @@ void _draw_grid(int x = 0, int y = 0, int ch = 0) {
 	xx = x;
 	xx += 30;
 	x = xx;
-	if (ch == 2) {
-		for (i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
+	if (ch == 2)
+	{
+		for (i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
 				rectangle(x, y, x + d, y + d);
 				y += d;
 			}
@@ -53,10 +63,10 @@ void _draw_grid(int x = 0, int y = 0, int ch = 0) {
 			x += d;
 		}
 	}
-
 }
 
-void _latlon() {
+void _latlon()
+{
 	setfillstyle(SOLID_FILL, 1);
 	bar(0, 0, getmaxx(), getmaxy());
 
@@ -81,10 +91,10 @@ void _latlon() {
 	_draw_grid(x, y, 2);
 
 	char ch;
-//	while(1)
+	//	while(1)
 	{
-//		ch=getch();
-		setcolor (BLUE);
+		//		ch=getch();
+		setcolor(BLUE);
 		line(x, y, x, y);
 		line(x, y, x, y);
 	}

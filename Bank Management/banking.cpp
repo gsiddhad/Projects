@@ -8,23 +8,27 @@ void modify();
 
 int gacno = 1110;
 
-struct dob {
+struct dob
+{
 	int date;
 	int month;
 	int year;
 };
 
-void getlatestacno() {
+void getlatestacno()
+{
 	ifstream ifile("Y:\\main.txt", ios::binary);
 	accountsmaster m;
-	while (ifile.read((char*) &m, sizeof(m))) {
+	while (ifile.read((char *)&m, sizeof(m)))
+	{
 		gacno = m.getacno();
 	}
 	gacno++;
 	ifile.close();
 }
 
-void insert() {
+void insert()
+{
 	clrscr();
 	int c;
 	cout << "\n                          Create new account:\n\n";
@@ -33,23 +37,30 @@ void insert() {
 	cout << "\n			   Enter the choice:";
 	cin >> c;
 	accountsmaster s;
-	if (c == 1) {
+	if (c == 1)
+	{
 		ofstream ofile("Y:\\main.txt", ios::binary | ios::app);
 		s.getdata();
-		ofile.write((char*) &s, sizeof(s));
+		ofile.write((char *)&s, sizeof(s));
 		ofile.close();
-	} else if (c == 2) {
-	} else {
+	}
+	else if (c == 2)
+	{
+	}
+	else
+	{
 		cout << "\nEnter valid option.";
 	}
 }
 
-void display() {
+void display()
+{
 	clrscr();
 	cout << "\n                                Display details ";
 	accountsmaster s;
 	ifstream ifile("Y:\\main.txt", ios::binary);
-	while (ifile.read((char*) &s, sizeof(s))) {
+	while (ifile.read((char *)&s, sizeof(s)))
+	{
 		s.showdata();
 		cout << "\n";
 		cout << "\nPress enter to continue..";
@@ -61,14 +72,16 @@ void display() {
 	ifile.close();
 }
 
-void isearch() {
+void isearch()
+{
 	clrscr();
 	int choice;
 	char ch;
 	ifstream ifile("Y:\\main.txt", ios::binary);
 	accountsmaster s;
 	cout << "\n                          Search by: ";
-	cout << "\n" "\n";
+	cout << "\n"
+			"\n";
 	cout << "\n                                   1.Account Number";
 	cout << "\n";
 	cout << "\n                                   2.Name";
@@ -78,57 +91,74 @@ void isearch() {
 	cout << "\n                          Enter choice: ";
 	cin >> choice;
 	int found = 0;
-	if (choice == 1) {
+	if (choice == 1)
+	{
 		int acc;
 		cout << "\nEnter account number:";
 		cin >> acc;
-		while (ifile.read((char*) &s, sizeof(s))) {
-			if (s.getacno() == acc) {
+		while (ifile.read((char *)&s, sizeof(s)))
+		{
+			if (s.getacno() == acc)
+			{
 				found = 1;
 				cout << "\nAccount found.\n";
 				cout << "\nDo you want to see the details(y/n): ";
 				cin >> ch;
-				if (ch == 'y') {
+				if (ch == 'y')
+				{
 					s.showdata();
 					getch();
-				} else if (ch == 'n') {
+				}
+				else if (ch == 'n')
+				{
 					getch();
 				}
 				break;
 			}
-
 		}
-		if (found == 0) {
+		if (found == 0)
+		{
 			cout << "\nNot found";
 		}
-	} else if (choice == 2) {
+	}
+	else if (choice == 2)
+	{
 		char aname[30];
 		cout << "\nEnter name of account:";
 		gets(aname);
-		while (ifile.read((char*) &s, sizeof(s))) {
-			if (strcmp(aname, s.catc()) == 0) {
+		while (ifile.read((char *)&s, sizeof(s)))
+		{
+			if (strcmp(aname, s.catc()) == 0)
+			{
 				found = 1;
 				cout << "\nAccount found.";
 				cout << "\nDo yo u want to see the details(y/n):";
 				cin >> ch;
-				if (ch == 'y') {
+				if (ch == 'y')
+				{
 					s.showdata();
 					getch();
-				} else if (ch == 'n') {
+				}
+				else if (ch == 'n')
+				{
 					getch();
 				}
 				break;
 			}
 		}
-		if (found == 0) {
+		if (found == 0)
+		{
 			cout << "\nNot found.";
 		}
-	} else if (choice == 3) {
+	}
+	else if (choice == 3)
+	{
 	}
 	ifile.close();
 }
 
-void del() {
+void del()
+{
 	clrscr();
 	int choice;
 	char ch;
@@ -142,45 +172,61 @@ void del() {
 	cout << "\n                              Enter choice: ";
 	cin >> choice;
 
-	if (choice == 1) {
+	if (choice == 1)
+	{
 		int acno;
 		cout << "\nEnter account number to be deleted: ";
 		cin >> acno;
-		while (ifile.read((char*) &s, sizeof(s))) {
-			if (acno == s.getacno()) {
+		while (ifile.read((char *)&s, sizeof(s)))
+		{
+			if (acno == s.getacno())
+			{
 				s.showdata();
 				cout
-						<< "\n\nAre you sure you want to delete the account?(y/n):";
+					<< "\n\nAre you sure you want to delete the account?(y/n):";
 				cin >> ch;
-				if (ch == 'y') {
+				if (ch == 'y')
+				{
 					cout << "\n\nDelete in progress...";
 					getch();
-				} else {
-					ofile.write((char*) &s, sizeof(s));
 				}
-			} else {
-				ofile.write((char*) &s, sizeof(s));
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
+				}
+			}
+			else
+			{
+				ofile.write((char *)&s, sizeof(s));
 			}
 		}
 	}
-	if (choice == 2) {
+	if (choice == 2)
+	{
 		char aname[30];
 		cout << "\nEnter name of account holder to be deleted: ";
 		gets(aname);
-		while (ifile.read((char*) &s, sizeof(s))) {
-			if (strcmp(aname, s.catc()) == 0) {
+		while (ifile.read((char *)&s, sizeof(s)))
+		{
+			if (strcmp(aname, s.catc()) == 0)
+			{
 				s.showdata();
 				cout
-						<< "\n\nAre you sure you want to delete the account?(y/n):";
+					<< "\n\nAre you sure you want to delete the account?(y/n):";
 				cin >> ch;
-				if (ch == 'y') {
+				if (ch == 'y')
+				{
 					cout << "\n\nDelete in progress...";
 					getch();
-				} else {
-					ofile.write((char*) &s, sizeof(s));
 				}
-			} else {
-				ofile.write((char*) &s, sizeof(s));
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
+				}
+			}
+			else
+			{
+				ofile.write((char *)&s, sizeof(s));
 			}
 		}
 	}
@@ -192,7 +238,8 @@ void del() {
 	rename("Y:\\temp.txt", "Y:\\main.txt");
 }
 
-void modify() {
+void modify()
+{
 	clrscr();
 	int choice;
 	char ch;
@@ -209,36 +256,48 @@ void modify() {
 	cout << "\n                                 6.Exit.\n";
 	cout << "\n                           Enter choice: ";
 	cin >> choice;
-	switch (choice) {
+	switch (choice)
+	{
 	case 1:
 		cout << "\nHow you want to search";
 		cout << "\n1.Name.";
 		cout << "\n2.Account no.";
 		cout << "\nenter the choice:";
 		cin >> c;
-		if (c == 1) {
+		if (c == 1)
+		{
 			char aname[30];
 			cout << "\nEnter name of account holder to be searched: ";
 			gets(aname);
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (strcmp(aname, s.catc()) == 0) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (strcmp(aname, s.catc()) == 0)
+				{
 					s.editfield(1);
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 					cout << "\nEnter valid name.";
 				}
 			}
-		} else if (c == 2) {
+		}
+		else if (c == 2)
+		{
 			int acno;
 			cout << "\nEnter account number of account holder to be searched: ";
 			cin >> acno;
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (acno == s.getacno()) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (acno == s.getacno())
+				{
 					s.editfield(1);
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 					cout << "\nEnter valid account number.";
 				}
 			}
@@ -250,31 +309,41 @@ void modify() {
 		cout << "\n2.Account no.";
 		cout << "\nenter the choice:";
 		cin >> c;
-		if (c == 1) {
+		if (c == 1)
+		{
 			char aname[30];
 			cout << "\nEnter name of account holder to be searched: ";
 			gets(aname);
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (strcmp(aname, s.catc()) == 0) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (strcmp(aname, s.catc()) == 0)
+				{
 					s.editfield(2);
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 				}
 			}
-		} else if (c == 2) {
+		}
+		else if (c == 2)
+		{
 			int acno;
 			cout << "\nEnter account number of account holder to be searched: ";
 			cin >> acno;
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (acno == s.getacno()) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (acno == s.getacno())
+				{
 					s.editfield(2);
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 				}
 			}
-
 		}
 		break;
 	case 3:
@@ -283,28 +352,39 @@ void modify() {
 		cout << "\n2.Account no.";
 		cout << "\nenter the choice:";
 		cin >> c;
-		if (c == 1) {
+		if (c == 1)
+		{
 			char aname[30];
 			cout << "\nEnter name of account holder to be searched: ";
 			gets(aname);
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (strcmp(aname, s.catc()) == 0) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (strcmp(aname, s.catc()) == 0)
+				{
 					s.editfield(3);
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 				}
 			}
-		} else if (c == 2) {
+		}
+		else if (c == 2)
+		{
 			int acno;
 			cout << "\nEnter account number of account holder to be searched: ";
 			cin >> acno;
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (acno == s.getacno()) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (acno == s.getacno())
+				{
 					s.editfield(3);
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 				}
 			}
 		}
@@ -315,28 +395,39 @@ void modify() {
 		cout << "\n2.Account no.";
 		cout << "\nenter the choice:";
 		cin >> c;
-		if (c == 1) {
+		if (c == 1)
+		{
 			char aname[30];
 			cout << "\nEnter name of account holder to be searched: ";
 			gets(aname);
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (strcmp(aname, s.catc()) == 0) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (strcmp(aname, s.catc()) == 0)
+				{
 					s.editfield(4);
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 				}
 			}
-		} else if (c == 2) {
+		}
+		else if (c == 2)
+		{
 			int acno;
 			cout << "\nEnter account number of account holder to be searched: ";
 			cin >> acno;
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (acno == s.getacno()) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (acno == s.getacno())
+				{
 					s.editfield(4);
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 				}
 			}
 		}
@@ -347,28 +438,39 @@ void modify() {
 		cout << "\n2.Account no.";
 		cout << "\nenter the choice:";
 		cin >> c;
-		if (c == 1) {
+		if (c == 1)
+		{
 			char aname[30];
 			cout << "\nEnter name of account holder to be searched: ";
 			gets(aname);
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (strcmp(aname, s.catc()) == 0) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (strcmp(aname, s.catc()) == 0)
+				{
 					s.getdata();
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 				}
 			}
-		} else if (c == 2) {
+		}
+		else if (c == 2)
+		{
 			int acno;
 			cout << "\nEnter account number of account holder to be searched: ";
 			cin >> acno;
-			while (ifile.read((char*) &s, sizeof(s))) {
-				if (acno == s.getacno()) {
+			while (ifile.read((char *)&s, sizeof(s)))
+			{
+				if (acno == s.getacno())
+				{
 					s.getdata();
-					ofile.write((char*) &s, sizeof(s));
-				} else {
-					ofile.write((char*) &s, sizeof(s));
+					ofile.write((char *)&s, sizeof(s));
+				}
+				else
+				{
+					ofile.write((char *)&s, sizeof(s));
 				}
 			}
 		}
@@ -383,7 +485,8 @@ void modify() {
 	rename("Y:\\temp.txt", "Y:\\main.txt");
 }
 
-void report() {
+void report()
+{
 	clrscr();
 	deposit m;
 	accountsmaster s;
@@ -400,12 +503,14 @@ void report() {
 	cout << "\n                 Enter the choice:";
 	cin >> c;
 
-	if (c == 1) {
+	if (c == 1)
+	{
 		clrscr();
 		int i = 6;
 		cout << "\n               Deposit Report\n\n";
 		cout << "\n";
-		while (file.read((char*) &m, sizeof(m))) {
+		while (file.read((char *)&m, sizeof(m)))
+		{
 			gotoxy(1, 5);
 			cout << "Account no.";
 			gotoxy(15, 5);
@@ -416,12 +521,15 @@ void report() {
 			i++;
 			getch();
 		}
-	} else if (c == 2) {
+	}
+	else if (c == 2)
+	{
 		clrscr();
 		int i = 6;
 		cout << "\n               Withdraw Report\n\n";
 		cout << "\n";
-		while (file1.read((char*) &m, sizeof(m))) {
+		while (file1.read((char *)&m, sizeof(m)))
+		{
 			gotoxy(1, 5);
 			cout << "Account no.";
 			gotoxy(15, 5);
@@ -432,12 +540,15 @@ void report() {
 			i++;
 			getch();
 		}
-	} else if (c == 3) {
+	}
+	else if (c == 3)
+	{
 		clrscr();
 		int i = 6;
 		cout << "\n               Detailed Report\n\n";
 		cout << "\n";
-		while (ifile.read((char*) &s, sizeof(s))) {
+		while (ifile.read((char *)&s, sizeof(s)))
+		{
 			gotoxy(1, 5);
 			cout << "Account no.";
 			gotoxy(15, 5);
@@ -450,13 +561,18 @@ void report() {
 			i++;
 			getch();
 		}
-	} else if (c == 4) {
-	} else {
+	}
+	else if (c == 4)
+	{
+	}
+	else
+	{
 		cout << "\nEnter valid choice.";
 	}
 }
 
-void adeposit() {
+void adeposit()
+{
 	clrscr();
 	int acc, found = 0, p;
 	char ch, t;
@@ -473,26 +589,32 @@ void adeposit() {
 	cout << "\nEnter account number: ";
 	cin >> acc;
 
-	while (ifile.read((char*) &s, sizeof(s))) {
-		if (s.getacno() == acc) {
+	while (ifile.read((char *)&s, sizeof(s)))
+	{
+		if (s.getacno() == acc)
+		{
 			found = 1;
 			cout << "\nEnter the date of transaction: ";
 			cin >> d.date >> d.month >> d.year;
 			cout << "\nEnter amount to be deposited: ";
 			cin >> tempamt;
 			p = s.updatebalance(tempamt, 'd');
-			ofile.write((char*) &s, sizeof(s));
-			if (p == 1) {
+			ofile.write((char *)&s, sizeof(s));
+			if (p == 1)
+			{
 				m.getdata(acc, d, tempamt);
-				file.write((char*) &m, sizeof(m));
+				file.write((char *)&m, sizeof(m));
 			}
-		} else {
+		}
+		else
+		{
 			found = 0;
-			ofile.write((char*) &s, sizeof(s));
+			ofile.write((char *)&s, sizeof(s));
 		}
 	}
 
-	if (found == 0) {
+	if (found == 0)
+	{
 		cout << "\nAccount not found!";
 		getch();
 	}
@@ -503,7 +625,8 @@ void adeposit() {
 	rename("Y:\\temp.txt", "Y:\\main.txt");
 }
 
-void withdraw() {
+void withdraw()
+{
 	clrscr();
 	int acc, found = 0, p;
 	char ch, t;
@@ -520,26 +643,32 @@ void withdraw() {
 	cout << "\nEnter account number: ";
 	cin >> acc;
 
-	while (ifile.read((char*) &s, sizeof(s))) {
-		if (s.getacno() == acc) {
+	while (ifile.read((char *)&s, sizeof(s)))
+	{
+		if (s.getacno() == acc)
+		{
 			found = 1;
 			cout << "\nEnter the date of transaction: ";
 			cin >> d.date >> d.month >> d.year;
 			cout << "\nEnter amount to be withdrawn: ";
 			cin >> tempamt;
 			p = s.updatebalance(tempamt, 'w');
-			ofile.write((char*) &s, sizeof(s));
-			if (p == 1) {
+			ofile.write((char *)&s, sizeof(s));
+			if (p == 1)
+			{
 				m.getdata(acc, d, tempamt);
-				file.write((char*) &m, sizeof(m));
+				file.write((char *)&m, sizeof(m));
 			}
-		} else {
+		}
+		else
+		{
 			found = 0;
-			ofile.write((char*) &s, sizeof(s));
+			ofile.write((char *)&s, sizeof(s));
 		}
 	}
 
-	if (found == 0) {
+	if (found == 0)
+	{
 		cout << "\nAccount not found!";
 		getch();
 	}
@@ -550,10 +679,12 @@ void withdraw() {
 	rename("Y:\\temp.txt", "Y:\\main.txt");
 }
 
-void accountsinfo() {
+void accountsinfo()
+{
 	clrscr();
 	int choice;
-	do {
+	do
+	{
 		clrscr();
 		cout << "\n                     Accounts Information" << endl;
 		cout << "\n			     1.Create new account" << endl;
@@ -564,7 +695,8 @@ void accountsinfo() {
 		cout << "\n			     6.Exit to home screen" << endl;
 		cout << "\n		     Enter your choice: ";
 		cin >> choice;
-		switch (choice) {
+		switch (choice)
+		{
 		case 1:
 			insert();
 			break;
@@ -589,20 +721,23 @@ void accountsinfo() {
 	} while (choice != 6);
 }
 
-void suseracc(int accno) {
+void suseracc(int accno)
+{
 	clrscr();
 	accountsmaster s;
 	ifstream ifile("Y:\\main.txt", ios::binary);
-	while (ifile.read((char*) &s, sizeof(s))) {
-		if (s.getacno() == accno) {
+	while (ifile.read((char *)&s, sizeof(s)))
+	{
+		if (s.getacno() == accno)
+		{
 			s.showdata();
 			getch();
 		}
 	}
-
 }
 
-void userdep(int accno) {
+void userdep(int accno)
+{
 	clrscr();
 	dob d;
 	long double tempamt, p;
@@ -613,20 +748,25 @@ void userdep(int accno) {
 	accountsmaster s;
 	deposit m;
 
-	while (ifile.read((char*) &s, sizeof(s))) {
-		if (s.getacno() == accno) {
+	while (ifile.read((char *)&s, sizeof(s)))
+	{
+		if (s.getacno() == accno)
+		{
 			cout << "\nEnter the date of transaction: ";
 			cin >> d.date >> d.month >> d.year;
 			cout << "\nEnter amount to be deposited: ";
 			cin >> tempamt;
 			p = s.updatebalance(tempamt, 'd');
-			ofile.write((char*) &s, sizeof(s));
-			if (p == 1) {
+			ofile.write((char *)&s, sizeof(s));
+			if (p == 1)
+			{
 				m.getdata(accno, d, tempamt);
-				file.write((char*) &m, sizeof(m));
+				file.write((char *)&m, sizeof(m));
 			}
-		} else {
-			ofile.write((char*) &s, sizeof(s));
+		}
+		else
+		{
+			ofile.write((char *)&s, sizeof(s));
 		}
 	}
 
@@ -636,7 +776,8 @@ void userdep(int accno) {
 	rename("Y:\\temp.txt", "Y:\\main.txt");
 }
 
-void uwithdraw(int accno) {
+void uwithdraw(int accno)
+{
 	clrscr();
 	dob d;
 	long double tempamt, p;
@@ -647,20 +788,25 @@ void uwithdraw(int accno) {
 	accountsmaster s;
 	deposit m;
 
-	while (ifile.read((char*) &s, sizeof(s))) {
-		if (s.getacno() == accno) {
+	while (ifile.read((char *)&s, sizeof(s)))
+	{
+		if (s.getacno() == accno)
+		{
 			cout << "\nEnter the date of transaction: ";
 			cin >> d.date >> d.month >> d.year;
 			cout << "\nEnter amount to be withdrawn: ";
 			cin >> tempamt;
 			p = s.updatebalance(tempamt, 'w');
-			ofile.write((char*) &s, sizeof(s));
-			if (p == 1) {
+			ofile.write((char *)&s, sizeof(s));
+			if (p == 1)
+			{
 				m.getdata(accno, d, tempamt);
-				file.write((char*) &m, sizeof(m));
+				file.write((char *)&m, sizeof(m));
 			}
-		} else {
-			ofile.write((char*) &s, sizeof(s));
+		}
+		else
+		{
+			ofile.write((char *)&s, sizeof(s));
 		}
 	}
 
@@ -668,13 +814,14 @@ void uwithdraw(int accno) {
 	ofile.close();
 	remove("Y:\\main.txt");
 	rename("Y:\\temp.txt", "Y:\\main.txt");
-
 }
 
-void login(int accno) {
+void login(int accno)
+{
 	clrscr();
 	int choice;
-	do {
+	do
+	{
 		clrscr();
 		cout << "\n			Overview";
 		cout << "\n				1.Access details";
@@ -683,7 +830,8 @@ void login(int accno) {
 		cout << "\n\n				4.Exit";
 		cout << "\n\n			Enter your choice: ";
 		cin >> choice;
-		switch (choice) {
+		switch (choice)
+		{
 		case 1:
 			suseracc(accno);
 			break;
@@ -702,43 +850,56 @@ void login(int accno) {
 	} while (choice != 4);
 }
 
-void user() {
+void user()
+{
 	clrscr();
 	accountsmaster s;
 	int accno;
 	int choice;
 	int found = 0;
 	ifstream ifile("Y:\\main.txt", ios::binary);
-	while (1) {
+	while (1)
+	{
 		clrscr();
 		cout << "\n			Welcome to the Bank";
 		cout << "\n\n				Enter your account no.: ";
 		cin >> accno;
-		while (ifile.read((char*) &s, sizeof(s))) {
-			if (accno == s.getacno()) {
+		while (ifile.read((char *)&s, sizeof(s)))
+		{
+			if (accno == s.getacno())
+			{
 				found = 1;
 				cout << "\n\n				Enter your password: ";
 				char pass[20], str[20];
 				int x = 0, ch;
-				while (1) {
+				while (1)
+				{
 					ch = getch();
-					if (ch == 13) {
+					if (ch == 13)
+					{
 						pass[x] = '\0';
 						break;
-					} else {
+					}
+					else
+					{
 						pass[x] = ch;
 						x++;
 						cout << "*";
 					}
 				}
-				if (strcmp(pass, "hell") == 0) {
+				if (strcmp(pass, "hell") == 0)
+				{
 					cout << "YeS";
-				} else {
+				}
+				else
+				{
 					cout << "no";
 				}
 				login(accno);
 				break;
-			} else if (found == 0) {
+			}
+			else if (found == 0)
+			{
 				cout << "\nAccount does not exist!";
 				getch();
 				break;
@@ -748,21 +909,24 @@ void user() {
 	}
 }
 
-void employee() {
+void employee()
+{
 	clrscr();
 	int choice;
-	do {
+	do
+	{
 		clrscr();
 		cout << "\n			Employee";
 		cout << "\n\n\n                            1.Accounts Information"
-				<< endl;
+			 << endl;
 		cout << "\n\n			    2.Deposit" << endl;
 		cout << "\n\n			    3.Withdraw" << endl;
 		cout << "\n\n			    4.Report" << endl;
 		cout << "\n\n			    5.Exit Program" << endl;
 		cout << "\n\n                     Enter your choice:";
 		cin >> choice;
-		switch (choice) {
+		switch (choice)
+		{
 		case 1:
 			accountsinfo();
 			break;
@@ -784,18 +948,22 @@ void employee() {
 	} while (choice != 5);
 }
 
-void menu() {
+void menu()
+{
 	clrscr();
 	int choice;
-	do {
+	do
+	{
 		clrscr();
-		cout << "\n		      Banking Systems" << endl << endl;
+		cout << "\n		      Banking Systems" << endl
+			 << endl;
 		cout << "\n\n			1.Employee";
 		cout << "\n\n			2.Account holder";
 		cout << "\n\n			3.Exit";
 		cout << "\n\n		      Enter your choice: ";
 		cin >> choice;
-		switch (choice) {
+		switch (choice)
+		{
 		case 1:
 			employee();
 			break;
@@ -811,7 +979,8 @@ void menu() {
 	} while (choice != 3);
 }
 
-void main() {
+void main()
+{
 	clrscr();
 	menu();
 }

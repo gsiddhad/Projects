@@ -8,24 +8,24 @@ void front() // Main Function To Be Called
 	int ch = 0;
 	display();
 	showmouseptr();
-	while (1) {
+	while (1)
+	{
 		getmousepos(&button, &x, &y);
-		if (button == 1) {
+		if (button == 1)
+		{
 			if (x > 380 && y > 150 && x < 524 && y < 180)
 				ch = 12;
 			if (x > 380 && y > 270 && x < 524 && y < 300)
 				ch = 13;
-			if (x > 25 && x < 75 && y > (getmaxy() - 50)
-					&& y < (getmaxy() - 10))
+			if (x > 25 && x < 75 && y > (getmaxy() - 50) && y < (getmaxy() - 10))
 				ch = 7;
-			if (x > (getmaxx() - 75) && x < (getmaxx() - 25)
-					&& y > (getmaxy() - 50) && y < (getmaxy() - 10))
+			if (x > (getmaxx() - 75) && x < (getmaxx() - 25) && y > (getmaxy() - 50) && y < (getmaxy() - 10))
 				ch = 15;
-			if (x > (getmaxx() / 2 - 25) && x < (getmaxx() / 2 + 25)
-					&& y > (getmaxy() - 50) && y < (getmaxy() - 10))
+			if (x > (getmaxx() / 2 - 25) && x < (getmaxx() / 2 + 25) && y > (getmaxy() - 50) && y < (getmaxy() - 10))
 				ch = 14;
 		}
-		switch (ch) {
+		switch (ch)
+		{
 		case 12:
 			passworda();
 			break;
@@ -44,33 +44,39 @@ void front() // Main Function To Be Called
 	}
 }
 
-void dispbutton(int n) {
+void dispbutton(int n)
+{
 	int x1, x2, y1, y2;
-	if (n == 12) {
+	if (n == 12)
+	{
 		x1 = 380;
 		y1 = 150;
 		x2 = 524;
 		y2 = 180;
 	}
-	if (n == 13) {
+	if (n == 13)
+	{
 		x1 = 380;
 		y1 = 270;
 		x2 = 524;
 		y2 = 300;
 	}
-	if (n == 7) {
+	if (n == 7)
+	{
 		x1 = 25;
 		x2 = 75;
 		y1 = getmaxy() - 50;
 		y2 = getmaxy() - 10;
 	}
-	if (n == 15) {
+	if (n == 15)
+	{
 		x1 = getmaxx() - 75;
 		x2 = getmaxx() - 25;
 		y1 = getmaxy() - 50;
 		y2 = getmaxy() - 10;
 	}
-	if (n == 14) {
+	if (n == 14)
+	{
 		x1 = getmaxx() / 2 - 25;
 		x2 = getmaxx() / 2 + 25;
 		y1 = getmaxy() - 50;
@@ -86,12 +92,13 @@ void dispbutton(int n) {
 	line(x1, y2, x2, y2);
 }
 
-void display() {
-	setbkcolor (LIGHTBLUE);
+void display()
+{
+	setbkcolor(LIGHTBLUE);
 	setfillstyle(SOLID_FILL, BLUE);
 	bar(0, 0, getmaxx(), 60);
 
-	setcolor (BLUE);
+	setcolor(BLUE);
 	bar(0, getmaxy() - 60, getmaxx(), getmaxy());
 	line(getmaxx() / 2, 130, getmaxx() / 2, getmaxy() - 130);
 
@@ -106,16 +113,17 @@ void display() {
 	outtextxy(getmaxx() / 6, getmaxy() / 2 - 35, "WELCOME");
 
 	settextstyle(GOTHIC_FONT, HORIZ_DIR, 3.5);
-	setcolor (GREEN);
+	setcolor(GREEN);
 	outtextxy(getmaxx() / 3, 10, "GOURAV SIDDHAD");
 
 	settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
-	setcolor (RED);
+	setcolor(RED);
 	outtextxy(385, 155, "ADMINISTRATOR");
 	outtextxy(424, 275, "GUEST");
 }
 
-void main() {
+void main()
+{
 	clrscr();
 	int gd = DETECT, gm = 0;
 	initgraph(&gd, &gm, "c:\\tc\\bgi");
@@ -125,28 +133,32 @@ void main() {
 	getch();
 }
 
-void passworda() {
+void passworda()
+{
 	settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
 	setcolor(7);
 	outtextxy(385, 155, "ADMINISTRATOR");
 	gotoxy(385, 155);
 	int i = 0;
 	char ch, pass[8];
-	while (1) {
+	while (1)
+	{
 		getmousepos(&button, &x, &y);
-		if (button == 1) {
-			if (x > (getmaxx() - 75) && x < (getmaxx() - 25)
-					&& y > (getmaxy() - 50) && y < (getmaxy() - 10))
+		if (button == 1)
+		{
+			if (x > (getmaxx() - 75) && x < (getmaxx() - 25) && y > (getmaxy() - 50) && y < (getmaxy() - 10))
 				front();
 		}
 		ch = getch();
 		if (ch == 13)
 			passworda();
-		else {
+		else
+		{
 			cout << "!";
 			pass[i] = ch;
 			i++;
-			if (i == 8) {
+			if (i == 8)
+			{
 				pass[i] = '\0';
 				break;
 			}
@@ -158,22 +170,26 @@ void passworda() {
 		front();
 }
 
-void passwordg() {
+void passwordg()
+{
 	int i = 0;
 	settextstyle(TRIPLEX_FONT, HORIZ_DIR, 1);
 	setcolor(7);
 	outtextxy(424, 275, "GUEST");
 	gotoxy(424, 275);
 	char ch, pass[8];
-	while (1) {
+	while (1)
+	{
 		ch = getch();
 		if (ch == 13)
 			passwordg();
-		else {
+		else
+		{
 			cout << "!";
 			pass[i] = ch;
 			i++;
-			if (i == 8) {
+			if (i == 8)
+			{
 				pass[i] = '\0';
 				break;
 			}

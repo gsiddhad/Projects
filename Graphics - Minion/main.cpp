@@ -1,7 +1,8 @@
 #include "gourav.h"
 #include "minion.h"
 
-void main() {
+void main()
+{
 	int gd = DETECT, gm = 0;
 	initgraph(&gd, &gm, "c:\\software\\tc\\bgi");
 
@@ -13,13 +14,15 @@ void main() {
 	 void far *ptr=farmalloc(size);
 	 */
 	_minion_draw(x, y, 400);
-//	rectangle(x-30,y-70,x+30,y+70);
-//	size=imagesize(x-31,y-71,x+31,y+71);
-//	getimage(x-30,y-70,x+30,y+70,ptr);
+	//	rectangle(x-30,y-70,x+30,y+70);
+	//	size=imagesize(x-31,y-71,x+31,y+71);
+	//	getimage(x-30,y-70,x+30,y+70,ptr);
 
-	while (1) {
+	while (1)
+	{
 		ch = getch();
-		switch (ch) {
+		switch (ch)
+		{
 		case 72:
 			y--;
 			break;

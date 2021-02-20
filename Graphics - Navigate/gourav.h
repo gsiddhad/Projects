@@ -17,43 +17,45 @@ union REGS mi, mo;
 
 _mouse_init()
 {
-	mi.x.ax=0;
-	int86(0x33,&mi,&mo);
+	mi.x.ax = 0;
+	int86(0x33, &mi, &mo);
 	return (mo.x.ax);
 }
 
 _mouse_show()
 {
-	mi.x.ax=1;
-	int86(0x33,&mi,&mo);
+	mi.x.ax = 1;
+	int86(0x33, &mi, &mo);
 	return 0;
 }
 
 _mouse_hide()
 {
-	mi.x.ax=2;
-	int86(0x33,&mi,&mo);
+	mi.x.ax = 2;
+	int86(0x33, &mi, &mo);
 	return 0;
 }
 
-_mouse_getmousepos(int *button,int *mx,int *my)
+_mouse_getmousepos(int *button, int *mx, int *my)
 {
-	mi.x.ax=3;
-	int86(0x33,&mi,&mo);
-	*button=mo.x.bx;
-	*mx=mo.x.cx;
-	*my=mo.x.dx;
+	mi.x.ax = 3;
+	int86(0x33, &mi, &mo);
+	*button = mo.x.bx;
+	*mx = mo.x.cx;
+	*my = mo.x.dx;
 	return 0;
 }
 
-void _graphics_init() {
+void _graphics_init()
+{
 	int gd = DETECT, gm = 0;
 	initgraph(&gd, &gm, "C:\\tc\\bgi");
 	settextjustify(HORIZ_DIR, CENTER_TEXT);
 	settextjustify(VERT_DIR, CENTER_TEXT);
 }
 
-void box(int x1, int y1, int x2, int y2, int color) {
+void box(int x1, int y1, int x2, int y2, int color)
+{
 	setfillstyle(SOLID_FILL, color);
 	bar(x1, y1, x2, y2);
 	setlinestyle(0, 0, 3);
@@ -65,7 +67,8 @@ void box(int x1, int y1, int x2, int y2, int color) {
 	line(x1, y2, x2, y2);
 }
 
-void ahbutton(int x1, int y1, int x2, int y2, int color) {
+void ahbutton(int x1, int y1, int x2, int y2, int color)
+{
 	setfillstyle(SOLID_FILL, color);
 	bar(x1, y1, x2, y2);
 	setcolor(color);
@@ -75,14 +78,17 @@ void ahbutton(int x1, int y1, int x2, int y2, int color) {
 	floodfill((x1 + x2) / 2, y2 + 1, color);
 }
 
-void inttostr(int num, char str[]) {
+void inttostr(int num, char str[])
+{
 	strcpy(str, "");
 	int copy = 0;
 	char ch[] = "00";
 	copy = num;
 
-	while (copy > 0) {
-		switch (copy % 10) {
+	while (copy > 0)
+	{
+		switch (copy % 10)
+		{
 		case 0:
 			strcpy(ch, "0");
 			break;

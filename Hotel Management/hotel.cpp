@@ -7,19 +7,23 @@ using namespace std;
 
 int DD, MM, YY;
 
-void box(int x1, int y1, int x2, int y2, int line) {
+void box(int x1, int y1, int x2, int y2, int line)
+{
 	char hor = 186;
-	for (int i = x1; i <= x2; i++) {
+	for (int i = x1; i <= x2; i++)
+	{
 		gotoxy(i, y1);
 		cout << hor;
-		if (line == 1) {
+		if (line == 1)
+		{
 			gotoxy(i, y1 + 4);
 			cout << hor;
 		}
 		gotoxy(i, y2);
 		cout << hor;
 	}
-	for (i = y1; i <= y2; i++) {
+	for (i = y1; i <= y2; i++)
+	{
 		gotoxy(x1, i);
 		cout << hor;
 		gotoxy(x2, i);
@@ -27,7 +31,8 @@ void box(int x1, int y1, int x2, int y2, int line) {
 	}
 }
 
-void main() {
+void main()
+{
 	clrscr();
 	struct date d;
 	getdate(&d);
@@ -39,7 +44,8 @@ void main() {
 	box(27, 10, 53, 14, 1);
 	getch();
 	int choice;
-	do {
+	do
+	{
 		clrscr();
 		clrscr();
 		box(20, 6, 60, 23, 1);
@@ -70,13 +76,16 @@ void main() {
 		CUSTOMER c;
 		ROOMS r;
 
-		switch (choice) {
+		switch (choice)
+		{
 		case 1:
 			c.intro();
 			break;
-		case 2: {
+		case 2:
+		{
 			int choice;
-			do {
+			do
+			{
 				clrscr();
 				box(25, 5, 55, 20, 1);
 				gotoxy(34, 7);
@@ -91,7 +100,8 @@ void main() {
 				gotoxy(31, 18);
 				cout << "Enter choice : ";
 				cin >> choice;
-				switch (choice) {
+				switch (choice)
+				{
 				case 1:
 					c.inquiryRoomNo();
 					break;

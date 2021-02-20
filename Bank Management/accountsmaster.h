@@ -1,27 +1,30 @@
 #ifndef ACCOUNTSMASTER_H_
 #define ACCOUNTSMASTER_H_
 
-#include<fstream.h>
-#include<conio.h>
-#include<stdio.h>
-#include<string.h>
-#include<ctype.h>
+#include <fstream.h>
+#include <conio.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
 using namespace std;
 
-class deposit {
+class deposit
+{
 private:
 	int accno;
 	long double amount;
 	dob d;
 
 public:
-	void getdata(int a, dob date, long double amt) {
+	void getdata(int a, dob date, long double amt)
+	{
 		accno = a;
 		d = date;
 		amount = amt;
 	}
-	void report(int i) {
+	void report(int i)
+	{
 		cout << "\n";
 		gotoxy(1, i);
 		cout << accno;
@@ -32,19 +35,22 @@ public:
 	}
 };
 
-class withdraw {
+class withdraw
+{
 private:
 	int accno;
 	long double amount;
 	dob d;
 
 public:
-	void getdata(int a, dob date, long double amt) {
+	void getdata(int a, dob date, long double amt)
+	{
 		accno = a;
 		d = date;
 		amount = amt;
 	}
-	void report(int i) {
+	void report(int i)
+	{
 		cout << "\n";
 		gotoxy(1, i);
 		cout << accno;
@@ -55,7 +61,8 @@ public:
 	}
 };
 
-class accountsmaster {
+class accountsmaster
+{
 private:
 	int accno;
 	char name[30];
@@ -65,19 +72,23 @@ private:
 	long double balance;
 
 public:
-	accountsmaster() {
+	accountsmaster()
+	{
 		balance = 0.0;
 	}
 
-	void getdata() {
+	void getdata()
+	{
 		getlatestacno();
 		accno = gacno;
-		while (1) {
+		while (1)
+		{
 			int a;
 			cout << "\nEnter name: ";
 			gets(name);
 			a = check(1);
-			if (a == 1) {
+			if (a == 1)
+			{
 				break;
 			}
 			break;
@@ -89,7 +100,8 @@ public:
 		cout << "\nEnter phone/mobile number: ";
 		cin >> no;
 	}
-	void showdata() {
+	void showdata()
+	{
 		clrscr();
 		cout << "\n                     Accounts Information\n";
 		cout << "\nAccount number: ";
@@ -105,45 +117,65 @@ public:
 		cout << "\nbalance:";
 		cout << balance;
 	}
-	char* catc() {
+	char *catc()
+	{
 		return name;
 	}
-	char* catadd() {
+	char *catadd()
+	{
 		return add;
 	}
-	dob catdob() {
+	dob catdob()
+	{
 		return d;
 	}
-	int getacno() {
+	int getacno()
+	{
 		return accno;
 	}
-	long double getbal() {
+	long double getbal()
+	{
 		return balance;
 	}
-	void editfield(int var1) {
-		if (var1 == 1) {
+	void editfield(int var1)
+	{
+		if (var1 == 1)
+		{
 			cout << "\nEnter modified name: ";
 			cin >> name;
-		} else if (var1 == 2) {
+		}
+		else if (var1 == 2)
+		{
 			cout << "\nEnter modified address: ";
 			cin >> add;
-		} else if (var1 == 3) {
+		}
+		else if (var1 == 3)
+		{
 			cout << "\nEnter modified mobile number: ";
 			cin >> no;
-		} else if (var1 == 4) {
+		}
+		else if (var1 == 4)
+		{
 			cout << "\nEnter modified date of birth: ";
 			cin >> d.date >> d.month >> d.year;
 		}
 	}
-	int updatebalance(long double amt, char c) {
+	int updatebalance(long double amt, char c)
+	{
 		int found = 0;
-		if (c == 'd') {
+		if (c == 'd')
+		{
 			balance = balance + amt;
 			found = 1;
-		} else if (c == 'w') {
-			if (amt > balance) {
+		}
+		else if (c == 'w')
+		{
+			if (amt > balance)
+			{
 				cout << "\nNot enough balance";
-			} else {
+			}
+			else
+			{
 				balance = balance - amt;
 				found = 1;
 			}
@@ -152,7 +184,8 @@ public:
 		getch();
 		return (found);
 	}
-	void report(int i) {
+	void report(int i)
+	{
 		cout << "\n";
 		gotoxy(1, i);
 		cout << accno;
@@ -163,11 +196,15 @@ public:
 		gotoxy(53, i);
 		cout << balance;
 	}
-	int check(int temp) {
+	int check(int temp)
+	{
 		int found = 1;
-		if (temp == 1) {
-			for (int i = 0; name[i] != '\0'; i++) {
-				if (isalpha(name[i]) == 0) {
+		if (temp == 1)
+		{
+			for (int i = 0; name[i] != '\0'; i++)
+			{
+				if (isalpha(name[i]) == 0)
+				{
 					found = 0;
 					cout << "\nError!";
 					getch();

@@ -7,7 +7,8 @@ void drawnode(int, int, int);
 void insertmap_box8();
 void newmap();
 
-void newmap() {
+void newmap()
+{
 	char str[20], mapname[20];
 	char dir[50], dir1[50], dir2[50], dir3[50];
 
@@ -28,15 +29,16 @@ void newmap() {
 	insertmap();
 }
 
-void insertmap() {
+void insertmap()
+{
 	_mouse_hide();
 
-	setcolor (RED);
+	setcolor(RED);
 	setfillstyle(SOLID_FILL, RED);
 	circle(20, 20, 10);
 	floodfill(20, 20, RED);
 
-	setcolor (BLUE);
+	setcolor(BLUE);
 	setfillstyle(SOLID_FILL, BLUE);
 	circle(20, getmaxy() - 20, 10);
 	floodfill(20, getmaxy() - 20, BLUE);
@@ -51,24 +53,27 @@ void insertmap() {
 	 */
 
 	_mouse_show();
-	while (1) {
+	while (1)
+	{
 		_mouse_getmousepos(&button, &mx, &my);
 		{
-			if (mx > 10 && my > (getmaxy() - 30) && mx < 30
-					&& my < (getmaxy() - 10))
+			if (mx > 10 && my > (getmaxy() - 30) && mx < 30 && my < (getmaxy() - 10))
 				insertmap_box8();
 		}
-		if (button == 1) {
+		if (button == 1)
+		{
 			if (mx > 10 && my > 10 && mx < 30 && my < 30)
-				exit(0);	//check the red button
+				exit(0); //check the red button
 
-			if (checknode == 1) {
+			if (checknode == 1)
+			{
 				_mouse_hide();
 				setcolor(RED);
 				drawnode(mx, my, 40);
 				_mouse_show();
 			}
-			if (checknode == 2) {
+			if (checknode == 2)
+			{
 			}
 		}
 		if (button == 2)
@@ -76,19 +81,21 @@ void insertmap() {
 	}
 }
 
-void insertmap_box8() {
+void insertmap_box8()
+{
 	_mouse_hide();
 
 	void far
-	*ptr;
-	ptr = (void *) imagesize(0, getmaxy() - 100, getmaxx(), getmaxy());
+		*ptr;
+	ptr = (void *)imagesize(0, getmaxy() - 100, getmaxx(), getmaxy());
 	getimage(0, getmaxy() - 100, getmaxx(), getmaxy(), ptr);
 
 	int cx = getmaxx() / 2, cy = getmaxy() - 50;
-	int cord[][2] = { cx - 240, cy, cx - 160, cy, cx - 80, cy, cx, cy, cx + 80,
-			cy, cx + 160, cy, cx + 240, cy, -1, -1 };
+	int cord[][2] = {cx - 240, cy, cx - 160, cy, cx - 80, cy, cx, cy, cx + 80,
+					 cy, cx + 160, cy, cx + 240, cy, -1, -1};
 
-	for (int i = 0; cord[i][0] != -1; i++) {
+	for (int i = 0; cord[i][0] != -1; i++)
+	{
 		setfillstyle(SOLID_FILL, random(15) + 1);
 		int x1 = cord[i][0], y1 = cord[i][1];
 		bar(x1 - 36, y1 - 36, x1 + 36, y1 + 36);
@@ -97,19 +104,21 @@ void insertmap_box8() {
 	}
 
 	_mouse_show();
-	while (1) {
+	while (1)
+	{
 		_mouse_getmousepos(&button, &mx, &my);
 
-		{		//if no button is pressed
-			if (!(mx > 0 && my > getmaxy() - 100 && mx < getmaxx()
-					&& my < getmaxy())) {	//when mouse is out of boxes
+		{ //if no button is pressed
+			if (!(mx > 0 && my > getmaxy() - 100 && mx < getmaxx() && my < getmaxy()))
+			{ //when mouse is out of boxes
 				_mouse_hide();
 				putimage(0, getmaxy() - 100, ptr, COPY_PUT);
 				_mouse_show();
 				insertmap();
 			}
 
-			for (i = 0; cord[i][0] != -1; i++) {
+			for (i = 0; cord[i][0] != -1; i++)
+			{
 				int x = cord[i][0], y = cord[i][1];
 				if (mx > x - 36 && my > y - 36 && mx < x + 36 && my < y + 36)
 					;
@@ -117,10 +126,13 @@ void insertmap_box8() {
 			}
 		}
 
-		if (button == 1) {
-			for (i = 0; cord[i][0] != -1; i++) {
+		if (button == 1)
+		{
+			for (i = 0; cord[i][0] != -1; i++)
+			{
 				int x = cord[i][0], y = cord[i][1];
-				if (mx > x - 36 && my > y - 36 && mx < x + 36 && my < y + 36) {
+				if (mx > x - 36 && my > y - 36 && mx < x + 36 && my < y + 36)
+				{
 					_mouse_hide();
 					putimage(0, getmaxy() - 100, ptr, COPY_PUT);
 					_mouse_show();
@@ -136,10 +148,10 @@ void insertmap_box8() {
 		if (button == 2)
 			exit(0);
 	}
-
 }
 
-void drawnode(int x, int y, int r) {
+void drawnode(int x, int y, int r)
+{
 	line(x - r / 12, y, x + r / 12, y);
 
 	line(x - r / 12, y, x - r / 12, y + r / 6);
@@ -155,7 +167,8 @@ void drawnode(int x, int y, int r) {
 	line(x, y - r / 4, x + r / 4, y - r / 9);
 }
 
-void main() {
+void main()
+{
 	clrscr();
 	_graphics_init();
 	_mouse_init();

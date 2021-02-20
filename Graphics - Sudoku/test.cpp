@@ -1,10 +1,11 @@
 #include "gourav.h"
-#include<stdlib.h>
+#include <stdlib.h>
 
 void ags(int, int, int);
 void ballon();
 
-void main() {
+void main()
+{
 	int gd = DETECT, gm;
 	initgraph(&gd, &gm, "c:\\tc\\bgi");
 
@@ -14,7 +15,8 @@ void main() {
 	closegraph();
 }
 
-void ballon() {
+void ballon()
+{
 	randomise();
 
 	int x = random(getmaxx());
@@ -24,13 +26,14 @@ void ballon() {
 	circle();
 }
 
-void ags(int x, int y, int l) {
+void ags(int x, int y, int l)
+{
 	settextjustify(1, 1);
 	settextstyle(SANS_SERIF_FONT, HORIZ_DIR, 20);
 
 	outtextxy(x + l / 20, y - l / 8, "G");
 
-	setcolor (RED);
+	setcolor(RED);
 	line(x, y - 2 * l / 7, x + l / 6, y - l / 16);
 	line(x, y - 2 * l / 7, x - l / 6, y - l / 16);
 }

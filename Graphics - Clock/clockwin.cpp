@@ -1,15 +1,16 @@
-#include<iostream.h>
-#include<conio.h>
-#include<fstream.h>
-#include<stdlib.h>
-#include<dos.h>
-#include<string.h>
-#include<stdio.h>
-#include<process.h>
-#include<graphics.h>
-#include<math.h>
+#include <iostream.h>
+#include <conio.h>
+#include <fstream.h>
+#include <stdlib.h>
+#include <dos.h>
+#include <string.h>
+#include <stdio.h>
+#include <process.h>
+#include <graphics.h>
+#include <math.h>
 
-class clock {
+class clock
+{
 	int i, option, k;
 	char ch, pass[20];
 
@@ -34,35 +35,43 @@ public:
 	void gtimer(void);
 };
 
-void clock::password1(void) {
+void clock::password1(void)
+{
 	clrscr();
 	cleardevice();
 	rectangle(5, 5, 635, 475);
 	rectangle(10, 10, 630, 470);
-	setcolor (GREEN);
+	setcolor(GREEN);
 	outtextxy(20, 20, "ENTER PASSWORD...");
-	while (1) {
+	while (1)
+	{
 		ch = getch();
-		if (ch == 13) {
+		if (ch == 13)
+		{
 			pass[i] = '\0';
 			break;
-		} else {
+		}
+		else
+		{
 			pass[i] = ch;
 			i++;
 		}
 	}
 
-	if (strcmp(pass, "justopen") == 0) {
+	if (strcmp(pass, "justopen") == 0)
+	{
 		clrscr();
 		cleardevice();
 		rectangle(5, 5, 635, 475);
 		rectangle(10, 10, 630, 470);
 
-		setcolor (BLUE);
+		setcolor(BLUE);
 		outtextxy(getmaxx() / 2 - 60, getmaxy() / 2, "PASSWORD ACCEPTED");
 		delay(1000);
 		gclock();
-	} else if (strcmp(pass, "jetaime") == 0) {
+	}
+	else if (strcmp(pass, "jetaime") == 0)
+	{
 		clrscr();
 		cleardevice();
 		rectangle(5, 5, 635, 475);
@@ -71,76 +80,94 @@ void clock::password1(void) {
 		outtextxy(getmaxx() / 2 - 60, getmaxy() / 2, "PASSWORD ACCEPTED");
 		delay(1000);
 		mainopt();
-	} else {
+	}
+	else
+	{
 		clrscr();
 		cleardevice();
 		rectangle(5, 5, 635, 475);
 		rectangle(10, 10, 630, 470);
 
-		setcolor (RED);
+		setcolor(RED);
 		outtextxy(getmaxx() / 2 - 100, getmaxy() / 2,
-				"INVALID PASSWORD, TRY AGAIN LATER");
+				  "INVALID PASSWORD, TRY AGAIN LATER");
 		delay(1000);
 		password2();
 	}
-
 }
 
-void clock::password2(void) {
-	setcolor (BROWN);
+void clock::password2(void)
+{
+	setcolor(BROWN);
 	outtextxy(20, 20, "ENTER PASSWORD...");
-	while (1) {
+	while (1)
+	{
 		ch = getch();
-		if (ch == 13) {
+		if (ch == 13)
+		{
 			pass[i] = '\0';
 			break;
-		} else {
+		}
+		else
+		{
 			pass[i] = ch;
 			i++;
 		}
 	}
 
-	if (strcmp(pass, "justopen") == 0) {
+	if (strcmp(pass, "justopen") == 0)
+	{
 		clrscr();
 		cleardevice();
 		rectangle(5, 5, 635, 475);
 		rectangle(10, 10, 630, 470);
 
-		setcolor (BLUE);
+		setcolor(BLUE);
 		outtextxy(getmaxx() / 2 - 60, getmaxy() / 2, "PASSWORD ACCEPTED");
 		delay(1000);
 		gclock();
-	} else {
+	}
+	else
+	{
 		exit(1);
 	}
 }
 
-void clock::password3(void) {
+void clock::password3(void)
+{
 	clrscr();
 	cleardevice();
 	rectangle(5, 5, 635, 475);
 	rectangle(10, 10, 630, 470);
 
 	outtextxy(20, 20, "ENTER PASSWORD...");
-	while (1) {
+	while (1)
+	{
 		ch = getch();
-		if (ch == 13) {
+		if (ch == 13)
+		{
 			pass[i] = '\0';
 			break;
-		} else {
+		}
+		else
+		{
 			pass[i] = ch;
 			i++;
 		}
 	}
 
-	if (strcmp(pass, "jetaime") == 0) {
+	if (strcmp(pass, "jetaime") == 0)
+	{
 		optmasterreset();
-	} else {
+	}
+	else
+	{
 		mainopt();
 	}
 }
 
-void clock::mainopt(void) {
+void clock::mainopt(void)
+{
 	clrscr();
 	cleardevice();
 	rectangle(5, 5, 635, 475);
@@ -152,7 +179,8 @@ void clock::mainopt(void) {
 	outtextxy(x - 50, y + 10, "03.MASTER RESET");
 	outtextxy(x - 30, y + 30, "04.EXIT");
 	cin >> option;
-	switch (option) {
+	switch (option)
+	{
 	case 1:
 		optex();
 		break;
@@ -173,7 +201,8 @@ void clock::mainopt(void) {
 	}
 }
 
-void clock::optex(void) {
+void clock::optex(void)
+{
 	escreen();
 	int x = getmaxx() / 2, y = getmaxy() / 2;
 	outtextxy(x - 30, y - 30, "01.CLOCK");
@@ -182,7 +211,8 @@ void clock::optex(void) {
 	outtextxy(x - 30, y + 30, "04.TIMER");
 	outtextxy(x - 20, y + 50, "05.EXIT");
 	cin >> option;
-	switch (option) {
+	switch (option)
+	{
 	case 1:
 		gclock();
 		break;
@@ -203,7 +233,8 @@ void clock::optex(void) {
 	}
 }
 
-void clock::optsys(void) {
+void clock::optsys(void)
+{
 	clrscr();
 	cleardevice();
 	rectangle(5, 5, 635, 475);
@@ -213,7 +244,8 @@ void clock::optsys(void) {
 	outtextxy(x - 50, y, "02.CHANGE OPTIONS");
 	outtextxy(x - 20, y + 20, "03.EXIT");
 	cin >> option;
-	switch (option) {
+	switch (option)
+	{
 	case 1:
 		escreen();
 		optsysalarm();
@@ -234,7 +266,8 @@ void clock::optsys(void) {
 	}
 }
 
-void clock::optmasterreset(void) {
+void clock::optmasterreset(void)
+{
 	escreen();
 	ofstream out;
 	out.open("alarm.txt", ios::out | ios::trunc);
@@ -247,7 +280,8 @@ void clock::optmasterreset(void) {
 	mainopt();
 }
 
-void clock::optexlasttimeex(void) {
+void clock::optexlasttimeex(void)
+{
 	int hr, min;
 	struct time t;
 	fstream io;
@@ -263,13 +297,15 @@ void clock::optexlasttimeex(void) {
 	t.ti_min = min;
 	settime(&t);
 	io.close();
-	if (k == 0) {
+	if (k == 0)
+	{
 		k = 1;
 		gclock();
 	}
 }
 
-void optsysalarm() {
+void optsysalarm()
+{
 	escreen();
 	int x = getmaxx() / 2, y = getmaxy() / 2;
 	int option;
@@ -277,7 +313,8 @@ void optsysalarm() {
 	outtextxy(x - 50, y, "02.DEACTIVATE");
 	outtextxy(x - 30, y + 20, "03.EXIT");
 	cin >> option;
-	switch (option) {
+	switch (option)
+	{
 	case 1:
 		escreen();
 		optsysalarma();
@@ -298,14 +335,16 @@ void optsysalarm() {
 	}
 }
 
-void clock::optsyschange() {
+void clock::optsyschange()
+{
 	escreen();
 	int x = getmaxx() / 2, y = getmaxy() / 2;
 	outtextxy(x, y, "01.CHANGE TIME");
 	outtextxy(x, y, "02.CHANGE DATE");
 	outtextxy(x, y, "03.EXIT");
 	cin >> option;
-	switch (option) {
+	switch (option)
+	{
 	case 1:
 		escreen();
 		optsyschanget();
@@ -326,7 +365,8 @@ void clock::optsyschange() {
 	}
 }
 
-void clock::optsysalarmd(void) {
+void clock::optsysalarmd(void)
+{
 	escreen();
 	ofstream out;
 	out.open("alarm.txt", ios::out);
@@ -338,7 +378,8 @@ void clock::optsysalarmd(void) {
 	optsys();
 }
 
-void clock::optsyschanget(void) {
+void clock::optsyschanget(void)
+{
 	escreen();
 	struct time t;
 	gettime(&t);
@@ -355,7 +396,8 @@ void clock::optsyschanget(void) {
 	optsyschange();
 }
 
-void clock::optsyschanged(void) {
+void clock::optsyschanged(void)
+{
 	escreen();
 	struct date reset;
 	struct date save_date;
@@ -374,12 +416,14 @@ void clock::optsyschanged(void) {
 	optsyschange();
 }
 
-void clock::cload(void) {
+void clock::cload(void)
+{
 	escreen();
-	setcolor (GREEN);
+	setcolor(GREEN);
 	outtextxy(getmaxx() / 2 - 40, getmaxy() / 2, "LOADING...");
-	while (i < 620) {
-		setcolor (YELLOW);
+	while (i < 620)
+	{
+		setcolor(YELLOW);
 		line(10 + i, getmaxy() - 15, 10 + i, getmaxy() - 12);
 		++i;
 		delay(4);
@@ -387,22 +431,25 @@ void clock::cload(void) {
 	escreen();
 	setcolor(GREEN);
 	outtextxy(getmaxx() / 2 - 35, getmaxy() / 2, "LOADED");
-	while (i < 620) {
-		setcolor (YELLOW);
+	while (i < 620)
+	{
+		setcolor(YELLOW);
 		line(10 + i, getmaxy() - 15, 10 + i, getmaxy() - 12);
 		++i;
 	}
 	delay(1000);
 }
 
-void clock::gtimer(void) {
+void clock::gtimer(void)
+{
 	escreen();
 	int tperiod;
 	cout << "\nEnter Time Period\t";
 	cin >> tperiod;
 	tperiod = (50 / 31) * tperiod;
-	while (i < 620) {
-		setcolor (BLUE);
+	while (i < 620)
+	{
+		setcolor(BLUE);
 		line(10 + i, getmaxy() - 15, 10 + i, getmaxy() - 10);
 		delay(tperiod);
 	}
@@ -412,24 +459,29 @@ void clock::gtimer(void) {
 	optex();
 }
 
-void clock::optexstopwatch(void) {
+void clock::optexstopwatch(void)
+{
 	int hr, sec, min, hsec;
 	escreen();
 	outtextxy(20, 20, "Press Any Key To Continue...");
 	getch();
 	i = 0;
-	while (!kbhit()) {
+	while (!kbhit())
+	{
 		delay(100);
 		escreen();
 		gotoxy(getmaxx() / 2 - 30, getmaxy() / 2);
 		printf("%2d : %02d : %02d : %02d.", hr, min, sec, hsec);
-		if (i >= 60) {
+		if (i >= 60)
+		{
 			i -= 60;
 			sec -= 1;
-			if (sec >= 60) {
+			if (sec >= 60)
+			{
 				sec -= 60;
 				min += 1;
-				if (min >= 60) {
+				if (min >= 60)
+				{
 					hr += 1;
 				}
 			}
@@ -438,12 +490,13 @@ void clock::optexstopwatch(void) {
 	}
 }
 
-void clock::gclock(void) {
+void clock::gclock(void)
+{
 	{
 		int h, m, s, tperiod, minang, secang, hrang;
 		int x = getmaxx() / 2, y = getmaxy() / 2, r = 300, i;
-		char n[12][3] = { "3", "2", "1", "12", "11", "10", "9", "8", "7", "6",
-				"5", "4" };
+		char n[12][3] = {"3", "2", "1", "12", "11", "10", "9", "8", "7", "6",
+						 "5", "4"};
 		struct REFGPACK reg;
 		struct time t;
 		setcolor(15);
@@ -451,71 +504,58 @@ void clock::gclock(void) {
 		circle(x, y, 184);
 		setcolor(6);
 		settextstyle(5, 0, 1);
-		for (i = 0; i < 12; ++i) {
+		for (i = 0; i < 12; ++i)
+		{
 			if (i != 3)
 				outtextxy(x + (r - 132) * cos(M_PI / 6 * i) - 8,
-						y - (r - 132) * sin(M_PI / 6 * i) - 16, n[i]);
+						  y - (r - 132) * sin(M_PI / 6 * i) - 16, n[i]);
 			else
 				outtextxy(x + (r - 132) * cos(M_PI / 6 * i) - 10,
-						y - (r - 132) * sin(M_PI / 6 * i) - 16, n[i]);
+						  y - (r - 132) * sin(M_PI / 6 * i) - 16, n[i]);
 		}
 
 		gettime(&t);
 		printf("\n\t");
 		printf("%02d:%02d:%02d", t.ti_hour, t.ti_min, t.ti_sec);
 
-		while (!kbhit()) {
+		while (!kbhit())
+		{
 			setcolor(5);
 			setfillstyle(1, 3);
 			circle(x, y, 4);
 			floodfill(x, y, 5);
 			gettime(&t);
-			if (t.ti_min != m) {
+			if (t.ti_min != m)
+			{
 				setcolor(10);
 				line(x, y, x + (r - 150) * cos(minang * (M_PI / 180)),
-						y - (r - 150) * sin(minang * (M_PI / 180)));
+					 y - (r - 150) * sin(minang * (M_PI / 180)));
 				circle(x + (r - 200) * cos(minang * (M_PI / 180)),
-						y - (r - 200) * sin(minang * (M_PI / 180)), 10);
+					   y - (r - 200) * sin(minang * (M_PI / 180)), 10);
 
 				line(x, y,
-						x
-								+ (r - 165)
-										* cos(
-												M_PI / 6 * h
-														- ((m / 2)
-																* (M_PI / 180))),
-						y
-								- (r - 165)
-										* sin(
-												M_PI / 6 * h
-														- ((m / 2)
-																* (M_PI / 180))));
+					 x + (r - 165) * cos(
+										 M_PI / 6 * h - ((m / 2) * (M_PI / 180))),
+					 y - (r - 165) * sin(
+										 M_PI / 6 * h - ((m / 2) * (M_PI / 180))));
 				circle(
-						x
-								+ (r - 200)
-										* cos(
-												M_PI / 6 * h
-														- (m / 2)
-																* (M_PI / 180)),
-						y
-								- (r - 200)
-										* sin(
-												M_PI / 6 * h
-														- (m / 2)
-																* (M_PI / 180)),
-						10);
+					x + (r - 200) * cos(
+										M_PI / 6 * h - (m / 2) * (M_PI / 180)),
+					y - (r - 200) * sin(
+										M_PI / 6 * h - (m / 2) * (M_PI / 180)),
+					10);
 			}
 		}
 	}
 }
 
-void main() {
+void main()
+{
 	int option;
 	int gd = 0, gm = 0, hr, min, sec, hsec;
-	_setcursortype (_NOCURSOR);
+	_setcursortype(_NOCURSOR);
 	initgraph(&gd, &gm, "c:\\tc\\bgi");
 	clock ob;
 	ob.password1();
 	getch();
 }
-

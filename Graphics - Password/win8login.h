@@ -2,12 +2,14 @@ void _win8();
 void _latlon();
 void _draw_grid(int, int);
 
-void _win8() {
+void _win8()
+{
 	struct dosdate_t d;
 	_dos_getdate(&d);
 	char month[10], mon[10], day[4], year[6];
 
-	switch (d.month) {
+	switch (d.month)
+	{
 	case 1:
 		strcpy(month, "January");
 		break;
@@ -44,7 +46,6 @@ void _win8() {
 	case 12:
 		strcpy(month, "December");
 		break;
-
 	}
 
 	strcpy(mon, " , ");
@@ -58,4 +59,3 @@ void _win8() {
 	outtextxy(x + 110, y, day);
 	getch();
 }
-

@@ -1,7 +1,8 @@
 #include "conio.h"
 #include "gourav.h"
 
-int main() {
+int main()
+{
 	int gd = DETECT, gm = 0;
 	initgraph(&gd, &gm, "c:\\software\\tc\\bgi");
 
@@ -12,7 +13,7 @@ int main() {
 
 	long size = imagesize(10, 10, 20, 20);
 	void far
-	*buff = farmalloc(size);
+		*buff = farmalloc(size);
 
 	getimage(10, 10, 20, 20, buff);
 	getch();

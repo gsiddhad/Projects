@@ -1,7 +1,8 @@
 #ifndef OSFUN_H_
 #define OSFUN_H_
 
-void owindow() {
+void owindow()
+{
 	bar(120, 65, getmaxx() - 120, getmaxy() - 65);
 
 	int left = 120, top = 65, right = getmaxx() - 120, bot = getmaxy() - 65;
@@ -9,7 +10,8 @@ void owindow() {
 
 	setcolor(15);
 
-	for (int k = 0; k < 40; k++) {
+	for (int k = 0; k < 40; k++)
+	{
 		rectangle(left, top, right, bot);
 
 		left = left - 1;
@@ -34,7 +36,8 @@ void owindow() {
 	bar(getmaxx() - 95, 10, getmaxx() - 70, 25);
 	bar(getmaxx() - 95, getmaxy() - 10, getmaxx() - 70, getmaxy() - 25);
 
-	for (k = 70; k >= 10; k--) {
+	for (k = 70; k >= 10; k--)
+	{
 		setcolor(0);
 		line(left + 10, top + 15, right + 10, bot - 15);
 		line(getmaxx() - left - 10, top + 15, getmaxx() - right - 10, bot - 15);
@@ -51,7 +54,7 @@ void owindow() {
 
 	int d = getmaxy() / 6;
 
-	setcolor (BLUE);
+	setcolor(BLUE);
 	ahome(50, d, 50);
 	setcolor(BLUE);
 	asuser(50, 2 * d);
@@ -63,101 +66,116 @@ void owindow() {
 	amin(50, 5 * d, 100);
 }
 
-void cwindow() {
+void cwindow()
+{
 	setcolor(0);
 	setlinestyle(0, 0, 3);
 
-	for (int k = 0; k < getmaxx() / 2; k++) {
+	for (int k = 0; k < getmaxx() / 2; k++)
+	{
 		line(k, 0, k, getmaxy());
 		line(getmaxx() - k, 0, getmaxx() - k, getmaxy());
 	}
 }
 
-void wwindow() {
+void wwindow()
+{
 	int d = getmaxy() / 6;
 	int flag = 0, dis = 0, dd = 0;
 	char str1[10], str2[10];
 	strcpy(str1, "");
 	strcpy(str2, "");
 
-	while (!kbhit()) {
+	while (!kbhit())
+	{
 		getmousepos(&button, &mx, &my);
 		flag = 0;
 
 		dis = sqrt(pow((50 - mx), 2) + pow((d - my), 2));
-		if (dis <= 20) {
+		if (dis <= 20)
+		{
 			flag = 1;
-			setcolor (RED);
+			setcolor(RED);
 			strcpy(str2, str1);
 			strcpy(str1, "HOME");
 			outtextxy(getmaxx() / 2 - 15, getmaxy() - 10, str1);
 		}
 
 		dis = sqrt(pow((50 - 2 - mx), 2) + pow((2 * d - my), 2));
-		if (dis <= 20) {
+		if (dis <= 20)
+		{
 			flag = 1;
 			strcpy(str2, str1);
 			strcpy(str1, "SWITCH USER");
-			setcolor (RED);
+			setcolor(RED);
 			outtextxy(getmaxx() / 2 - 45, getmaxy() - 10, str1);
 		}
 
 		dis = sqrt(pow((50 - 2 - mx), 2) + pow((3 * d - my), 2));
-		if (dis <= 20) {
+		if (dis <= 20)
+		{
 			flag = 1;
 			strcpy(str2, str1);
 			strcpy(str1, "INFO");
-			setcolor (RED);
+			setcolor(RED);
 			outtextxy(getmaxx() / 2 - 15, getmaxy() - 10, str1);
 		}
 
 		dis = sqrt(pow((50 - mx), 2) + pow((4 * d - my), 2));
-		if (dis <= 20) {
+		if (dis <= 20)
+		{
 			flag = 1;
 			strcpy(str2, str1);
 			strcpy(str1, "CLOSE");
-			setcolor (RED);
+			setcolor(RED);
 			outtextxy(getmaxx() / 2 - 20, getmaxy() - 10, str1);
 		}
 
 		dis = sqrt(pow((50 - mx), 2) + pow((5 * d - my), 2));
-		if (dis <= 20) {
+		if (dis <= 20)
+		{
 			flag = 1;
 			strcpy(str2, str1);
 			strcpy(str1, "MINIMISE");
-			setcolor (RED);
+			setcolor(RED);
 			outtextxy(getmaxx() / 2 - 30, getmaxy() - 10, str1);
 		}
 
-		if (button == 1) {
+		if (button == 1)
+		{
 			dis = sqrt(pow((50 - mx), 2) + pow((d - my), 2));
-			if (dis <= 20) {
+			if (dis <= 20)
+			{
 				exit(0);
 			}
 
 			dis = sqrt(pow((50 - mx), 2) + pow((2 * d - my), 2));
-			if (dis <= 20) {
+			if (dis <= 20)
+			{
 				exit(0);
 			}
 
 			dis = sqrt(pow((50 - mx), 2) + pow((3 * d - my), 2));
-			if (dis <= 20) {
+			if (dis <= 20)
+			{
 				exit(0);
 			}
 
 			dis = sqrt(pow((50 - mx), 2) + pow((4 * d - my), 2));
-			if (dis <= 20) {
+			if (dis <= 20)
+			{
 				exit(0);
 			}
 
 			dis = sqrt(pow((50 - mx), 2) + pow((5 * d - my), 2));
-			if (dis <= 20) {
+			if (dis <= 20)
+			{
 				exit(0);
 			}
-
 		}
 
-		if (strcmp(str1, str2) != 0 || flag == 0) {
+		if (strcmp(str1, str2) != 0 || flag == 0)
+		{
 			if (strcmp(str2, "HOME") == 0)
 				dd = 15;
 			if (strcmp(str2, "SWITCH USER") == 0)
@@ -174,44 +192,47 @@ void wwindow() {
 	}
 }
 
-void aloading() {
+void aloading()
+{
 	setfillstyle(SOLID_FILL, BLUE);
 	bar(40, getmaxy() - 42, getmaxx() - 40, getmaxy() - 40);
 
-	for (int j = 41; j < getmaxx() - 40; j++) {
+	for (int j = 41; j < getmaxx() - 40; j++)
+	{
 		delay(2);
 		putpixel(j, getmaxy() - 41, RED);
 	}
 }
 
-void akeypad(int x1, int y1) {
+void akeypad(int x1, int y1)
+{
 	int l1 = 100;
 	y1 -= l1 / 3 + l1 / 15;
 
 	settextstyle(GOTHIC_FONT, HORIZ_DIR, 5);
 	hidemouseptr();
 
-	setcolor (RED);
+	setcolor(RED);
 
-	circle(x1 - l1 / 2 - l1 / 4, y1, l1 / 4);		//4
-	circle(x1, y1, l1 / 4);			//5
-	circle(x1 + l1 / 2 + l1 / 4, y1, l1 / 4);		//6
+	circle(x1 - l1 / 2 - l1 / 4, y1, l1 / 4); //4
+	circle(x1, y1, l1 / 4);					  //5
+	circle(x1 + l1 / 2 + l1 / 4, y1, l1 / 4); //6
 
-	circle(x1 - l1 / 2 - l1 / 4, y1 - l1 / 2 - l1 / 4, l1 / 4);	//1
-	circle(x1, y1 - l1 / 2 - l1 / 4, l1 / 4);		//2
-	circle(x1 + l1 / 2 + l1 / 4, y1 - l1 / 2 - l1 / 4, l1 / 4);	//3
+	circle(x1 - l1 / 2 - l1 / 4, y1 - l1 / 2 - l1 / 4, l1 / 4); //1
+	circle(x1, y1 - l1 / 2 - l1 / 4, l1 / 4);					//2
+	circle(x1 + l1 / 2 + l1 / 4, y1 - l1 / 2 - l1 / 4, l1 / 4); //3
 
-	circle(x1 - l1 / 2 - l1 / 4, y1 + l1 / 2 + l1 / 4, l1 / 4);	//7
-	circle(x1, y1 + l1 / 2 + l1 / 4, l1 / 4);		//8
-	circle(x1 + l1 / 2 + l1 / 4, y1 + l1 / 2 + l1 / 4, l1 / 4);	//9
+	circle(x1 - l1 / 2 - l1 / 4, y1 + l1 / 2 + l1 / 4, l1 / 4); //7
+	circle(x1, y1 + l1 / 2 + l1 / 4, l1 / 4);					//8
+	circle(x1 + l1 / 2 + l1 / 4, y1 + l1 / 2 + l1 / 4, l1 / 4); //9
 
-	circle(x1, y1 + l1 + l1 / 2, l1 / 4);		//0
+	circle(x1, y1 + l1 + l1 / 2, l1 / 4); //0
 
 	outtextxy(x1 - l1 / 2 - l1 / 4 - l1 / 10, y1 - l1 / 2 - l1 / 2 - l1 / 20,
-			"1");
+			  "1");
 	outtextxy(x1 - l1 / 15, y1 - l1 / 2 - l1 / 2 - l1 / 20, "2");
 	outtextxy(x1 + l1 / 2 + l1 / 4 - l1 / 15, y1 - l1 / 2 - l1 / 2 - l1 / 20,
-			"3");
+			  "3");
 	outtextxy(x1 - l1 / 2 - l1 / 3 - l1 / 30, y1 - l1 / 4 - l1 / 20, "4");
 	outtextxy(x1 - l1 / 15, y1 - l1 / 4 - l1 / 20, "5");
 	outtextxy(x1 + l1 / 2 + l1 / 4 - l1 / 15, y1 - l1 / 4 - l1 / 20, "6");
@@ -228,17 +249,20 @@ void akeypad(int x1, int y1) {
 	showmouseptr();
 }
 
-void wkeypad(int x1, int y1) {
+void wkeypad(int x1, int y1)
+{
 	int k = 0, x, y;
-	char ch[] = { '\0', '\0', '\0', '\0', '\0' };
+	char ch[] = {'\0', '\0', '\0', '\0', '\0'};
 	int l1 = 100;
 	y1 -= l1 / 3 + l1 / 15;
 
 	settextstyle(DEFAULT_FONT, HORIZ_DIR, 1);
-	while (k < 4) {
+	while (k < 4)
+	{
 		ch[k++] = getch();
 
-		switch (ch[k - 1]) {
+		switch (ch[k - 1])
+		{
 		case '1':
 			x = x1 - l1 / 2 - l1 / 4;
 			y = y1 - l1 / 2 - l1 / 4;
@@ -282,12 +306,13 @@ void wkeypad(int x1, int y1) {
 		}
 
 		outtextxy(x1 - 15, 32, ch);
-		setcolor (YELLOW);
+		setcolor(YELLOW);
 		circle(x, y, 25);
 	}
 }
 
-char *readstring(int x1, int y1, int size) {
+char *readstring(int x1, int y1, int size)
+{
 	hidemouseptr();
 	setcolor(15);
 
@@ -300,13 +325,15 @@ char *readstring(int x1, int y1, int size) {
 		str[z] = '\0';
 
 	z = 0;
-	do {
+	do
+	{
 		ch = getch();
 		if (ch == 0)
 			ch = getch();
 		if (ch == 13)
 			break;
-		if (ch == 8) {
+		if (ch == 8)
+		{
 			setcolor(0);
 			outtextxy(x1, y1, str);
 			z--;
@@ -315,7 +342,8 @@ char *readstring(int x1, int y1, int size) {
 			outtextxy(x1, y1, str);
 			z--;
 		}
-		if (isalnum(ch) || (ch == '.') || (ch == ':')) {
+		if (isalnum(ch) || (ch == '.') || (ch == ':'))
+		{
 			str[z] = ch;
 			outtextxy(x1, y1, str);
 		}
@@ -326,7 +354,8 @@ char *readstring(int x1, int y1, int size) {
 	return str;
 }
 
-char *readpass(int x1, int y1, int size) {
+char *readpass(int x1, int y1, int size)
+{
 	hidemouseptr();
 
 	setcolor(15);
@@ -336,19 +365,22 @@ char *readpass(int x1, int y1, int size) {
 	str = new char[size];
 	pass = new char[size];
 
-	for (z = 0; z < size; z++) {
+	for (z = 0; z < size; z++)
+	{
 		str[z] = '\0';
 		pass[z] = '\0';
 	}
 
 	z = 0;
-	do {
+	do
+	{
 		ch = getch();
 		if (ch == 0)
 			ch = getch();
 		if (ch == 13)
 			break;
-		if (ch == 8) {
+		if (ch == 8)
+		{
 			setcolor(0);
 			outtextxy(x1, y1, pass);
 			z--;
@@ -359,7 +391,8 @@ char *readpass(int x1, int y1, int size) {
 			outtextxy(x1, y1, pass);
 			z--;
 		}
-		if (isalnum(ch) || (ch == '.') || (ch == ':')) {
+		if (isalnum(ch) || (ch == '.') || (ch == ':'))
+		{
 			str[z] = ch;
 			pass[z] = ':';
 			outtextxy(x1, y1, pass);
@@ -370,132 +403,148 @@ char *readpass(int x1, int y1, int size) {
 	return str;
 }
 
-void alogin() {
+void alogin()
+{
 	hidemouseptr();
 	cleardevice();
 
-	setcolor (WHITE);
+	setcolor(WHITE);
 	char str[] = "CONCEPT_MINI_OS_CL6113";
 	char st[22];
 	int k, j;
 
-	for (k = 0; str[k] != '\0'; k++) {
+	for (k = 0; str[k] != '\0'; k++)
+	{
 		st[k] = str[k];
 		st[k + 1] = '\0';
 		delay(100);
 		outtextxy(230, getmaxy() - 20, st);
 	}
 
-	for (k = 1, j = 42; k < 42; k++, j--) {
+	for (k = 1, j = 42; k < 42; k++, j--)
+	{
 		setcolor(0);
 		ausera(100 - j - 1, 100 - j - 1, k - 1);
 		auserg(540 + j + 1, 100 - j - 1, k - 1);
-		if (k >= 10) {
+		if (k >= 10)
+		{
 			ashutd(100 - j - 1, getmaxy() - 60 + j + 1, k - 1);
 			aexit(getmaxx() - 100 + j + 1, getmaxy() - 60 + j + 1, k - 1);
 		}
 
-		setcolor (YELLOW);
+		setcolor(YELLOW);
 		ausera(100 - j, 100 - j, k);
 		auserg(540 + j, 100 - j, k);
 
-		if (k >= 10) {
-			setcolor (RED);
+		if (k >= 10)
+		{
+			setcolor(RED);
 			ashutd(100 - j, getmaxy() - 60 + j, k);
 			aexit(getmaxx() - 100 + j, getmaxy() - 60 + j, k);
 		}
 		delay(10);
 	}
 	rectangle(getmaxx() / 2 - 90, getmaxy() / 2 + 160, getmaxx() / 2 + 90,
-			getmaxy() / 2 + 180);
+			  getmaxy() / 2 + 180);
 	showmouseptr();
 }
 
-void wlogin() {
+void wlogin()
+{
 	char str1[20], str2[20];
 	char *string;
 	int flag = 0, d = 0, dis = 0;
 
-	while (!kbhit()) {
+	while (!kbhit())
+	{
 		getmousepos(&button, &mx, &my);
 		flag = 0;
 
 		dis = sqrt(pow((540 + 2 - mx), 2) + pow((100 - my), 2));
-		if (dis <= 30) {
+		if (dis <= 30)
+		{
 			flag = 1;
-			setcolor (RED);
+			setcolor(RED);
 			strcpy(str2, str1);
 			strcpy(str1, "GUEST");
 			outtextxy(getmaxx() / 2 - 20, getmaxy() / 2 + 140, str1);
 		}
 
 		dis = sqrt(pow((100 - 2 - mx), 2) + pow((100 - my), 2));
-		if (dis <= 30) {
+		if (dis <= 30)
+		{
 			flag = 1;
 			strcpy(str2, str1);
 			strcpy(str1, "ADMINISTRATOR");
-			setcolor (RED);
+			setcolor(RED);
 			outtextxy(getmaxx() / 2 - 50, getmaxy() / 2 + 140, str1);
 		}
 
 		dis = sqrt(pow((100 - 2 - mx), 2) + pow((getmaxy() - 60 + 2 - my), 2));
-		if (dis <= 25) {
+		if (dis <= 25)
+		{
 			flag = 1;
 			strcpy(str2, str1);
 			strcpy(str1, "SHUT DOWN");
-			setcolor (RED);
+			setcolor(RED);
 			outtextxy(getmaxx() / 2 - 36, getmaxy() / 2 + 140, str1);
 		}
 
 		dis = sqrt(
-				pow((getmaxx() - 100 + 2 - mx), 2)
-						+ pow((getmaxy() - 60 + 2 - my), 2));
-		if (dis <= 25) {
+			pow((getmaxx() - 100 + 2 - mx), 2) + pow((getmaxy() - 60 + 2 - my), 2));
+		if (dis <= 25)
+		{
 			flag = 1;
 			strcpy(str2, str1);
 			strcpy(str1, "EXIT");
-			setcolor (RED);
+			setcolor(RED);
 			outtextxy(getmaxx() / 2 - 15, getmaxy() / 2 + 140, str1);
 		}
 
-		if (button == 1) {
+		if (button == 1)
+		{
 			dis = sqrt(pow((540 - mx), 2) + pow((100 - my), 2));
-			if (dis <= 30) {
+			if (dis <= 30)
+			{
 				setcolor(0);
-//				outtextxy(getmaxx()/2-20,getmaxy()/2+138,str2);
+				//				outtextxy(getmaxx()/2-20,getmaxy()/2+138,str2);
 				string = readpass(getmaxx() / 2 - 80, getmaxy() / 2 + 166, 20);
 
-				if (strcmp(string, "guest") == 0)		//function
-						{
+				if (strcmp(string, "guest") == 0) //function
+				{
 					exit(0);
 				}
 			}
 
 			dis = sqrt(pow((100 - mx), 2) + pow((100 - my), 2));
-			if (dis <= 30) {
+			if (dis <= 30)
+			{
 				setcolor(0);
-//				outtextxy(getmaxx()/2-50,getmaxy()/2+136,str2);
+				//				outtextxy(getmaxx()/2-50,getmaxy()/2+136,str2);
 				string = readpass(getmaxx() / 2 - 80, getmaxy() / 2 + 166, 20);
 
-				if (strcmp(string, "administrator") == 0) {
+				if (strcmp(string, "administrator") == 0)
+				{
 					exit(0);
 				}
 			}
 
 			dis = sqrt(pow((100 - mx), 2) + pow((getmaxy() - 60 - my), 2));
-			if (dis <= 15) {
+			if (dis <= 15)
+			{
 				exit(0);
 			}
 
 			dis = sqrt(
-					pow((getmaxx() - 100 - mx), 2)
-							+ pow((getmaxy() - 60 - my), 2));
-			if (dis <= 20) {
+				pow((getmaxx() - 100 - mx), 2) + pow((getmaxy() - 60 - my), 2));
+			if (dis <= 20)
+			{
 				exit(0);
 			}
 		}
 
-		if (strcmp(str1, str2) != 0 || flag == 0) {
+		if (strcmp(str1, str2) != 0 || flag == 0)
+		{
 			if (strcmp(str2, "GUEST") == 0)
 				d = 20;
 			if (strcmp(str2, "ADMINISTRATOR") == 0)
@@ -510,10 +559,13 @@ void wlogin() {
 	}
 }
 
-void freehand() {
-	while (!kbhit()) {
+void freehand()
+{
+	while (!kbhit())
+	{
 		getmousepos(&button, &mx, &my);
-		if (button == 1) {
+		if (button == 1)
+		{
 			hidemouseptr();
 
 			putpixel(mx, my, YELLOW);

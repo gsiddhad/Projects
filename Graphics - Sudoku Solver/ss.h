@@ -12,8 +12,10 @@
 #include "iomanip"
 using namespace std;
 
-class sudoku {
+class sudoku
+{
 	int matrix[9][9];
+
 public:
 	sudoku();
 	sudoku(int[][9]);
@@ -22,34 +24,41 @@ public:
 	void print();
 };
 
-sudoku::sudoku() {
+sudoku::sudoku()
+{
 	for (int i = 0; i < 9; i++)
 		for (int j = 0; j < 9; j++)
 			matrix[i][j] = 0;
 }
 
-sudoku::sudoku(int a[][9]) {
+sudoku::sudoku(int a[][9])
+{
 	for (int i = 0; i < 9; i++)
 		for (int j = 0; j < 9; j++)
 			matrix[i][j] = a[i][j];
 }
 
-void sudoku::input() {
+void sudoku::input()
+{
 	cout << "\n If Value Exist Then Enter Else Enter 0 \n";
 	for (int i = 0; i < 9; i++)
-		for (int j = 0; j < 9; j++) {
+		for (int j = 0; j < 9; j++)
+		{
 			cout << " Enter Value At " << i + 1 << "," << j + 1 << " : ";
 			cin >> matrix[i][j];
 		}
 }
 
-void sudoku::solve() {
-
+void sudoku::solve()
+{
 }
 
-void sudoku::print() {
-	for (int i = 0; i < 9; i++) {
-		for (int j = 0; j < 9; j++) {
+void sudoku::print()
+{
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = 0; j < 9; j++)
+		{
 			if (i % 3 == 0 && j == 0)
 				cout << " +-------+-------+-------+\n";
 			if (j % 3 == 0)
